@@ -1,0 +1,114 @@
+{
+  "name": "BYU-I Formula Racing",
+  "version": "1.0",
+  "status": "Proposed team design system",
+  "colors": {
+    "navy": {
+      "hex": "#031F3D",
+      "rgb": [
+        3,
+        31,
+        61
+      ]
+    },
+    "blue": {
+      "hex": "#0084FF",
+      "rgb": [
+        0,
+        132,
+        255
+      ]
+    },
+    "silver": {
+      "hex": "#E5E7EB",
+      "rgb": [
+        229,
+        231,
+        235
+      ]
+    },
+    "paper": {
+      "hex": "#F5F7FA",
+      "rgb": [
+        245,
+        247,
+        250
+      ]
+    },
+    "ink": {
+      "hex": "#152C44",
+      "rgb": [
+        21,
+        44,
+        68
+      ]
+    },
+    "action": {
+      "hex": "#005EB8",
+      "rgb": [
+        0,
+        94,
+        184
+      ]
+    },
+    "muted": {
+      "hex": "#526579",
+      "rgb": [
+        82,
+        101,
+        121
+      ]
+    },
+    "white": {
+      "hex": "#FFFFFF",
+      "rgb": [
+        255,
+        255,
+        255
+      ]
+    },
+    "line": {
+      "hex": "#D3DCE6",
+      "rgb": [
+        211,
+        220,
+        230
+      ]
+    },
+    "university": {
+      "hex": "#006EB6",
+      "rgb": [
+        0,
+        110,
+        182
+      ]
+    }
+  },
+  "fonts": {
+    "display": "Barlow Condensed SemiBold",
+    "body": "Inter",
+    "model_accent": "Nordic_Modern"
+  },
+  "spacing_px": [
+    4,
+    8,
+    16,
+    24,
+    32,
+    48,
+    64,
+    96
+  ],
+  "logo_min_visible_width": {
+    "crest_px": 240,
+    "crest_mm": 64,
+    "shield_px": 48,
+    "shield_mm": 12
+  },
+  "clear_space": "1/8 of visible mark width on all sides",
+  "notes": [
+    "Generated logo artwork is concept raster material, not a production vector master.",
+    "Racing Blue is proposed; BYU-Idaho official Brand Blue is #006EB6.",
+    "White on Racing Blue is 3.66:1; use Action Blue for normal white button labels."
+  ]
+}

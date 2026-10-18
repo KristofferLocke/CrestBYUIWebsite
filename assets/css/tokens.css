@@ -1,0 +1,86 @@
+/* BYU-I Formula Racing - proposed design system 1.0
+   Fonts: self-host licensed WOFF2 files for Inter and Barlow Condensed.
+   Logo PNGs are concept assets; do not reconstruct the wordmark with live text.
+   University Brand Blue reference: #006EB6. Confirm final campus branding.
+*/
+:root {
+  --brand-navy: #031f3d;
+  --brand-blue: #0084ff;
+  --brand-silver: #e5e7eb;
+  --brand-university-blue: #006eb6;
+  --surface: #ffffff;
+  --surface-subtle: #f5f7fa;
+  --text: #152c44;
+  --text-muted: #526579;
+  --border: #d3dce6;
+  --action: #005eb8;
+  --action-hover: #004b93;
+  --on-action: #ffffff;
+  --focus: #0084ff;
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Inter", Arial, sans-serif;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --space-7: 4rem;
+  --space-8: 6rem;
+  --content-max: 75rem;
+  --page-inset: 3rem;
+  --radius-card: 0.5rem;
+  --radius-control: 0.25rem;
+  --nav-height: 4.5rem;
+  --control-min: 2.75rem;
+  --logo-crest-min: 15rem; /* visible crest width, not PNG canvas */
+  --logo-shield-min: 3rem; /* visible shield width */
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface); color: var(--text);
+       font-family: var(--font-body); font-size: 1rem; line-height: 1.6; }
+.container { width: min(var(--content-max), calc(100% - 2 * var(--page-inset))); margin-inline: auto; }
+.layout-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-4); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.08;
+             letter-spacing: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.25rem, 5vw, 4.5rem); }
+h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
+p { max-width: 65ch; }
+a { color: var(--action); text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 0.14em; }
+button, input, select, textarea { font: inherit; }
+.button { display: inline-flex; justify-content: center; align-items: center;
+          min-height: var(--control-min); min-width: var(--control-min);
+          padding: 0.65rem 1.25rem; background: var(--action); color: var(--on-action);
+          border: 2px solid transparent; border-radius: var(--radius-control);
+          font-weight: 600; text-decoration: none; line-height: 1.25; cursor: pointer; }
+.button:hover { background: var(--action-hover); }
+.card { background: var(--surface); border: 1px solid var(--border);
+        border-radius: var(--radius-card); padding: var(--space-4); }
+.theme-dark { background: var(--brand-navy); color: var(--brand-silver); }
+.theme-dark a:not(.button) { color: var(--brand-silver); }
+.theme-dark h1, .theme-dark h2 { color: #fff; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.skip-link { position: fixed; top: 0.5rem; left: 0.5rem; z-index: 1000;
+             transform: translateY(-200%); padding: 0.75rem 1rem;
+             background: var(--action); color: #fff; }
+.skip-link:focus { transform: none; }
+/* Put the full crest inside a matching navy panel. Keep descriptive identity text
+   in the HTML next to a compact mark; never shrink the crest to act as a favicon. */
+.logo-panel { background: var(--brand-navy); padding: var(--space-5); }
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root { --page-inset: 1.5rem; }
+  .layout-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  :root { --page-inset: 1.25rem; }
+  .layout-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .button { width: 100%; }
+  /* Stack page components and replace wide navigation with an accessible menu.
+     Menu behavior, ARIA states and keyboard handling must be implemented in HTML/JS. */
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important; transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important; }
+}

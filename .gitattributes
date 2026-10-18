@@ -1,0 +1,9 @@
+* text=auto
+
+# Preserve source artwork and bundled fonts byte-for-byte.
+*.pdf binary
+*.png binary
+*.webp binary
+*.jpeg binary
+*.jpg binary
+*.ttf binary
