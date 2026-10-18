@@ -83,6 +83,12 @@ def check_reference(base, reference, pages):
         return
     # Keep the requested spelling: resolve() can correct casing on Windows.
     requested = Path(os.path.abspath(base.parent / unquote(url.path))) if url.path else base
+    # Cloudflare Pages serves extensionless routes from the matching HTML file.
+    if url.path:
+        if requested == ROOT:
+            requested = ROOT / "index.html"
+        elif requested.parent == ROOT and f"{requested.name}.html" in PAGES:
+            requested = requested.with_suffix(".html")
     target = requested.resolve()
     if not requested.is_relative_to(ROOT) or not target.is_relative_to(ROOT):
         errors.append(f"{base.name}: path leaves project: {reference}")

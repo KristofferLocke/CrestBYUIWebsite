@@ -8,7 +8,7 @@ The design follows the supplied brand system: Midnight Navy, Racing Blue, dark n
 
 1. Extract the ZIP.
 2. In VS Code, choose **File → Open Folder** and select `byui-formula-website`.
-3. Open `index.html` in a browser. Everything works locally, including the menu and message builder.
+3. Open `index.html` in a browser to inspect a page. Navigation uses extensionless URLs and requires a host that maps them to the HTML files, such as Cloudflare Pages.
 4. For live refresh while editing, install the recommended **Live Server** extension and choose **Open with Live Server** on `index.html`.
 
 Alternative local preview with Python installed:
@@ -17,7 +17,7 @@ Alternative local preview with Python installed:
 python -m http.server 5500
 ```
 
-Visit `http://localhost:5500`. Run that command from this project folder. On some computers, use `python3` or `py` instead of `python`.
+Visit `http://localhost:5500`. Run that command from this project folder. On some computers, use `python3` or `py` instead of `python`. Python's basic server does not resolve extensionless links; open each `.html` page directly for local inspection, and test navigation on a Cloudflare Pages preview deployment.
 
 ## What is included
 
@@ -69,7 +69,7 @@ The site has no service worker, Cache Storage, or local-storage cache to reset. 
 
 ## Publish later
 
-This folder is ready for GitHub Pages. All page and asset links are relative, so it works under a repository URL such as `https://YOUR-ACCOUNT.github.io/YOUR-REPOSITORY/`. Follow [PUBLISHING.md](docs/PUBLISHING.md).
+This folder uses Cloudflare Pages extensionless routes (`about`, `sponsors`, and `contact`), with `./` linking home. All page and asset links remain relative. Other hosts, including GitHub Pages, need equivalent route handling or links restored to `.html`. Follow [PUBLISHING.md](docs/PUBLISHING.md).
 
 ## Message delivery
 

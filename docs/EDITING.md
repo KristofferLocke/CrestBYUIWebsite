@@ -39,10 +39,10 @@ Links can preselect a topic:
 
 | Link | Selected topic |
 | --- | --- |
-| `contact.html?topic=sponsorship` | Sponsorship |
-| `contact.html?topic=joining` | Joining the team |
-| `contact.html?topic=technical` | Technical assistance |
-| `contact.html` | General enquiry |
+| `contact?topic=sponsorship` | Sponsorship |
+| `contact?topic=joining` | Joining the team |
+| `contact?topic=technical` | Technical assistance |
+| `contact` | General enquiry |
 
 ## 3. Add your own team photo
 
@@ -168,7 +168,7 @@ Edit the three subteam descriptions in `index.html` under `HOME 03 / SUBTEAMS`. 
 
 ## About navigation
 
-The About dropdown links to `about.html#team-information` and `about.html#competition-information`. Edit team copy in the mission section and add verified event details under `ABOUT 04 / COMPETITION`. The desktop and mobile dropdowns use native `details` elements; keep their keyboard and Escape behavior in `site.js`.
+The About dropdown links to `about#team-information` and `about#competition-information`. Edit team copy in the mission section and add verified event details under `ABOUT 04 / COMPETITION`. The desktop and mobile dropdowns use native `details` elements; keep their keyboard and Escape behavior in `site.js`.
 
 ## Page prefetching
 
