@@ -9,7 +9,7 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = ("index.html", "about/index.html", "sponsors/index.html", "contact/index.html")
+PAGES = ("index.html", "about.html", "sponsors.html", "contact.html")
 errors = []
 
 
@@ -83,9 +83,6 @@ def check_reference(base, reference, pages):
         return
     # Keep the requested spelling: resolve() can correct casing on Windows.
     requested = Path(os.path.abspath(base.parent / unquote(url.path))) if url.path else base
-    # Static hosts serve directory routes from their index.html files.
-    if requested.is_dir():
-        requested = requested / "index.html"
     target = requested.resolve()
     if not requested.is_relative_to(ROOT) or not target.is_relative_to(ROOT):
         errors.append(f"{base.name}: path leaves project: {reference}")
@@ -151,7 +148,6 @@ def main():
     # Inspect static strings in config and shared templates without executing JS.
     for script in (ROOT / "assets/js").glob("*.js"):
         source = script.read_text(encoding="utf-8")
-        source = source.replace("${siteRoot}", "")
         source = re.sub(r"/\*.*?\*/", "", source, flags=re.S)
         source = re.sub(r"^\s*//.*$", "", source, flags=re.M)
         for ref in re.findall(r'[\'"](assets/[^\'"\n]+)[\'"]', source):

@@ -5,23 +5,22 @@
 (() => {
   "use strict";
   const config = window.SITE_CONFIG || {};
-  const currentPage = document.body.dataset.page;
-  const siteRoot = currentPage === "home" ? "./" : "../";
   const pages = [
-    { id: "home", label: "Home", href: siteRoot },
-    { id: "about", label: "About", href: `${siteRoot}about/` },
-    { id: "sponsors", label: "Sponsors", href: `${siteRoot}sponsors/` },
-    { id: "contact", label: "Contact", href: `${siteRoot}contact/` }
+    { id: "home", label: "Home", href: "index.html" },
+    { id: "about", label: "About", href: "about.html" },
+    { id: "sponsors", label: "Sponsors", href: "sponsors.html" },
+    { id: "contact", label: "Contact", href: "contact.html" }
   ];
+  const currentPage = document.body.dataset.page;
   const arrow = '<span class="arrow" aria-hidden="true">↗</span>';
   const header = document.querySelector("[data-site-header]");
 
   const aboutDropdown = mobile => `
     <details class="${mobile ? "mobile-about" : "nav-dropdown"}${currentPage === "about" ? " is-current" : ""}">
-      <summary aria-label="About sections"><a href="${siteRoot}about/#top"${currentPage === "about" ? ' aria-current="page"' : ""}>About</a><svg class="dropdown-chevron" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg></summary>
+      <summary aria-label="About sections"><a href="about.html#top"${currentPage === "about" ? ' aria-current="page"' : ""}>About</a><svg class="dropdown-chevron" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg></summary>
       <div class="about-dropdown-panel"><ul class="about-submenu">
-        <li><a href="${siteRoot}about/#team-information">Team information</a></li>
-        <li><a href="${siteRoot}about/#competition-information">Competition information</a></li>
+        <li><a href="about.html#team-information">Team information</a></li>
+        <li><a href="about.html#competition-information">Competition information</a></li>
       </ul></div>
     </details>`;
 
@@ -36,8 +35,8 @@
           <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
           <span>Menu</span>
         </button>
-        <a class="brand-lockup" href="${siteRoot}" aria-label="BYU-I Formula Racing home">
-          <img src="${siteRoot}assets/images/combined-crest.webp" alt="" width="1293" height="1217" decoding="async">
+        <a class="brand-lockup" href="index.html" aria-label="BYU-I Formula Racing home">
+          <img src="assets/images/combined-crest.webp" alt="" width="1293" height="1217" decoding="async">
         </a>
       </div>
       <dialog class="site-menu" id="site-menu" aria-labelledby="menu-title">
@@ -156,7 +155,7 @@
     footer.innerHTML = `
       <div class="container">
         <div class="footer-main">
-          <a class="footer-logo" href="${siteRoot}"><img src="${siteRoot}assets/images/crest-horizontal.webp" alt="BYU-I Formula Racing home" width="1983" height="793" loading="lazy" decoding="async"></a>
+          <a class="footer-logo" href="index.html"><img src="assets/images/crest-horizontal.webp" alt="BYU-I Formula Racing home" width="1983" height="793" loading="lazy" decoding="async"></a>
           <nav class="footer-nav" aria-label="Footer navigation">${pages.map(page =>
             `<a href="${page.href}"${page.id === currentPage ? ' aria-current="page"' : ""}>${page.label}</a>`).join("")}</nav>
         </div>
@@ -199,7 +198,7 @@
 
   document.querySelectorAll("[data-sponsor-packet]").forEach(link => {
     if (!safeURL(config.sponsorPacket, true)) return;
-    link.href = siteRoot + config.sponsorPacket;
+    link.href = config.sponsorPacket;
     link.hidden = false;
   });
 
@@ -208,7 +207,7 @@
     if (!photo?.alt || !safeURL(photo.src, true)) return;
     const img = document.createElement("img");
     img.className = "team-photo";
-    img.src = siteRoot + photo.src;
+    img.src = photo.src;
     img.alt = photo.alt;
     img.width = 1200;
     img.height = 900;
@@ -236,7 +235,7 @@
       article.className = "sponsor-entry";
       if (hasLink) article.href = sponsor.url;
       const img = document.createElement("img");
-      img.src = siteRoot + sponsor.logo;
+      img.src = sponsor.logo;
       img.alt = ""; // The adjacent heading supplies the sponsor name.
       img.loading = "lazy";
       img.width = 240;
@@ -254,7 +253,7 @@
   if (/^https?:$/.test(window.location.protocol)) {
     const prefetched = new Set();
     const pendingHovers = new WeakMap();
-    const pagePaths = new Set(pages.map(page => new URL(page.href, document.baseURI).pathname));
+    const pagePaths = new Set(pages.map(page => new URL(page.href, window.location.href).pathname));
     const canPrefetch = () => {
       const connection = navigator.connection;
       return document.visibilityState === "visible" &&
