@@ -31,7 +31,7 @@ Email format:
 contactEmail: "your-approved-team-address@your-domain.org",
 ```
 
-Use the actual address approved by your team. Save and reload `contact.html`. The direct email link and **Open email app** action will appear. The visitor still sends the email themselves; GitHub Pages does not process forms.
+Use the actual address approved by your team. Save and reload `contact/index.html`. The direct email link and **Open email app** action will appear. The visitor still sends the email themselves; GitHub Pages does not process forms.
 
 The form validates the required fields, prepares a preview, and offers **Save message** and **Copy message** as alternatives. Changing a field hides the old preview so the visitor cannot accidentally use an outdated draft.
 
@@ -39,10 +39,10 @@ Links can preselect a topic:
 
 | Link | Selected topic |
 | --- | --- |
-| `contact?topic=sponsorship` | Sponsorship |
-| `contact?topic=joining` | Joining the team |
-| `contact?topic=technical` | Technical assistance |
-| `contact` | General enquiry |
+| `contact/?topic=sponsorship` | Sponsorship |
+| `contact/?topic=joining` | Joining the team |
+| `contact/?topic=technical` | Technical assistance |
+| `contact/` | General enquiry |
 
 ## 3. Add your own team photo
 
@@ -111,7 +111,7 @@ Create `assets/downloads/`, add the approved PDF, and set:
 sponsorPacket: "assets/downloads/sponsor-packet.pdf",
 ```
 
-The download button then appears on `sponsors.html`. Use your sponsorship packet, not the internal brand guide. The button stays hidden while the setting is empty.
+The download button then appears on `sponsors/index.html`. Use your sponsorship packet, not the internal brand guide. The button stays hidden while the setting is empty.
 
 ## 6. Change colors, typography, and spacing
 
@@ -168,7 +168,7 @@ Edit the three subteam descriptions in `index.html` under `HOME 03 / SUBTEAMS`. 
 
 ## About navigation
 
-The About dropdown links to `about#team-information` and `about#competition-information`. Edit team copy in the mission section and add verified event details under `ABOUT 04 / COMPETITION`. The desktop and mobile dropdowns use native `details` elements; keep their keyboard and Escape behavior in `site.js`.
+The About dropdown links to `about/#team-information` and `about/#competition-information`. Edit team copy in the mission section and add verified event details under `ABOUT 04 / COMPETITION`. The desktop and mobile dropdowns use native `details` elements; keep their keyboard and Escape behavior in `site.js`.
 
 ## Page prefetching
 

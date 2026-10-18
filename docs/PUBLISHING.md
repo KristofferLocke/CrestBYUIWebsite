@@ -1,15 +1,13 @@
 # VS Code to GitHub Pages
 
-The current site uses extensionless page links for Cloudflare Pages. In Cloudflare, import `KristofferLocke/CrestBYUIWebsite` as a Pages project with production branch `main`, framework preset None, build command `exit 0`, and output directory `.`. Add `byui-racing.com` under the project's Custom domains. Cloudflare Pages serves extensionless routes from the existing HTML files and redirects `.html` requests automatically; no custom rewrite file is needed. See [Cloudflare's routing documentation](https://developers.cloudflare.com/pages/configuration/serving-pages/).
-
-The GitHub Pages instructions below are an alternative: restore `.html` page links first, because GitHub Pages does not provide the same extensionless routing.
+The site is hosted on GitHub Pages; Cloudflare manages DNS for `byui-racing.com`. The `CNAME` file retains the custom domain. Clean URLs use `about/index.html`, `sponsors/index.html`, and `contact/index.html`, served as `/about/`, `/sponsors/`, and `/contact/`. No build or rewrite rules are needed. Old `/about.html`, `/sponsors.html`, and `/contact.html` bookmarks must be updated to the new directory URLs.
 
 The project is plain static files. GitHub Pages can publish them directly. Local links are relative so both account sites and repository sites work.
 
 ## Put the project in a repository
 
 1. Create a GitHub repository, for example `byui-formula-racing`.
-2. Put this project's **contents** at the repository root. `index.html` should be at the top level, next to `about.html` and `assets/`.
+2. Put this project's **contents** at the repository root. `index.html` should be at the top level, next to `about/`, `sponsors/`, `contact/`, and `assets/`.
 3. Commit and push the files using VS Code's Source Control interface or the terminal.
 
 For a new local repository, run these commands from the project folder. Replace `YOUR-ACCOUNT` and the repository name with your own values:

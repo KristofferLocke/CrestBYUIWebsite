@@ -2,7 +2,7 @@
 
 - This is a four-page HTML/CSS/JavaScript website. Preserve the no-build setup and four-page scope unless explicitly asked otherwise.
 - Read README.md and the relevant section of docs/EDITING.md before changing structure.
-- Page copy: root HTML files. Shared settings: assets/js/config.js. Header/menu/footer: assets/js/site.js. Contact behavior: assets/js/contact.js.
+- Page copy: index.html, about/index.html, sponsors/index.html, contact/index.html. Inner pages use ../ for assets and navigation; preserve same-document skip links. Shared settings: assets/js/config.js. Header/menu/footer: assets/js/site.js. Contact behavior: assets/js/contact.js.
 - Preserve the source brand system. tokens.css contains the supplied base design tokens; site.css contains component styles and responsive overrides.
 - Keep links relative so repository-based GitHub Pages URLs work. Do not add a hardcoded repository base path.
 - Keep fallback HTML navigation working when JS is disabled. Preserve skip links, visible focus, form labels, dialog keyboard behavior, and reduced-motion support.

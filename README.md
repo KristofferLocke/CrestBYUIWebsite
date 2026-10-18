@@ -8,7 +8,7 @@ The design follows the supplied brand system: Midnight Navy, Racing Blue, dark n
 
 1. Extract the ZIP.
 2. In VS Code, choose **File → Open Folder** and select `byui-formula-website`.
-3. Open `index.html` in a browser to inspect a page. Navigation uses extensionless URLs and requires a host that maps them to the HTML files, such as Cloudflare Pages.
+3. Open `index.html` in a browser, or use a local server for the same clean URLs as the published site.
 4. For live refresh while editing, install the recommended **Live Server** extension and choose **Open with Live Server** on `index.html`.
 
 Alternative local preview with Python installed:
@@ -17,16 +17,16 @@ Alternative local preview with Python installed:
 python -m http.server 5500
 ```
 
-Visit `http://localhost:5500`. Run that command from this project folder. On some computers, use `python3` or `py` instead of `python`. Python's basic server does not resolve extensionless links; open each `.html` page directly for local inspection, and test navigation on a Cloudflare Pages preview deployment.
+Visit `http://localhost:5500`. Run that command from this project folder. On some computers, use `python3` or `py` instead of `python`. Directory URLs such as `/sponsors/` work with this server and GitHub Pages.
 
 ## What is included
 
 | Page | File | Contents |
 | --- | --- | --- |
 | Home | `index.html` | Introduction, concept render, RAVN.1, photo spaces, manual subteam slideshow |
-| About | `about.html` | Mission, work areas, photo spaces, project and competition information, joining invitation |
-| Sponsors | `sponsors.html` | In-kind contributions, partnership process, major and supporting sponsor logo grids |
-| Contact | `contact.html` | Contact details and a local message builder |
+| About | `about/index.html` | Mission, work areas, photo spaces, project and competition information, joining invitation |
+| Sponsors | `sponsors/index.html` | In-kind contributions, partnership process, major and supporting sponsor logo grids |
+| Contact | `contact/index.html` | Contact details and a local message builder |
 
 | Change | Start here |
 | --- | --- |
@@ -61,7 +61,7 @@ This checks HTML structure and references, local image/font/script paths (includ
 
 ## Project organization and generated files
 
-The four public pages stay at the root. `assets/` contains runtime CSS, JavaScript, images, and licensed fonts; `docs/` contains maintenance guides; `scripts/` contains the dependency-free checker. `.editorconfig` and `.vscode/` provide editor defaults. `brand-source/` holds the original design references, not runtime configuration.
+The home page stays at the root; the other three pages live in `about/`, `sponsors/`, and `contact/`, each as `index.html`. Inner pages use `../` for shared assets and navigation; `site.js` applies the same prefix to generated links and configured assets. `assets/` contains runtime CSS, JavaScript, images, and licensed fonts; `docs/` contains maintenance guides; `scripts/` contains the dependency-free checker. `.editorconfig` and `.vscode/` provide editor defaults. `brand-source/` holds the original design references, not runtime configuration.
 
 The current supplied logos live in `assets/images/`; superseded logo files have been removed. The concept render retains its original PNG source alongside its WebP copy. Local review output in `qa/`, Python bytecode, and `.cache/` directories are ignored by Git and should stay out of published files.
 
@@ -69,7 +69,7 @@ The site has no service worker, Cache Storage, or local-storage cache to reset. 
 
 ## Publish later
 
-This folder uses Cloudflare Pages extensionless routes (`about`, `sponsors`, and `contact`), with `./` linking home. All page and asset links remain relative. Other hosts, including GitHub Pages, need equivalent route handling or links restored to `.html`. Follow [PUBLISHING.md](docs/PUBLISHING.md).
+This folder uses directory URLs (`about/`, `sponsors/`, and `contact/`), with `./` linking home. These work on GitHub Pages without a build or custom rewrites, including under a repository path. Cloudflare manages the custom domain's DNS. Follow [PUBLISHING.md](docs/PUBLISHING.md).
 
 ## Message delivery
 
