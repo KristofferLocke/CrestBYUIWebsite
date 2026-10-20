@@ -41,4 +41,4 @@ git push
 
 Keep paths relative (`assets/images/photo.webp`, not `/assets/images/photo.webp`). Filename capitalization must match exactly. No deployment workflow file or build tool is needed for this setup.
 
-GitHub Pages does not run a mail server. The included contact page uses a visitor's email app. If you later want direct web submissions, integrate a form service or backend and revise the UI to reflect actual delivery behavior.
+GitHub Pages does not process forms. `contact.html` uses a normal HTML POST to `https://formspree.io/f/xbgdbqjv`, opening Formspree for hosted reCAPTCHA and confirmation. This works with Formspree's built-in CAPTCHA without a custom key or AJAX. Confirm activation, notification recipients, allowed domains, spam protection, and submission limits in the Formspree dashboard. Test the published form with an approved message before relying on it; do not add private Formspree API keys to the site.

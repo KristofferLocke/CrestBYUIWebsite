@@ -31,9 +31,11 @@ Email format:
 contactEmail: "your-approved-team-address@your-domain.org",
 ```
 
-Use the actual address approved by your team. Save and reload `contact.html`. The direct email link and **Open email app** action will appear. The visitor still sends the email themselves; GitHub Pages does not process forms.
+Use the actual address approved by your team. Save and reload `contact.html`. The direct email link is independent of the Formspree form's recipient settings.
 
-The form validates the required fields, prepares a preview, and offers **Save message** and **Copy message** as alternatives. Changing a field hides the old preview so the visitor cannot accidentally use an outdated draft.
+The form's `action="https://formspree.io/f/xbgdbqjv"` and `method="POST"` in `contact.html` configure submission. Change the public endpoint there if needed; no private API key or JavaScript endpoint setting is required. Manage notification recipients and form activation in the Formspree dashboard, not `contactEmail`.
+
+`contact.js` adds field validation, a topic-based subject, and duplicate-submit protection to the native HTML POST. It leaves named fields enabled so all values are posted. Formspree receives the existing name, email, organisation, topic, and message fields, then handles hosted CAPTCHA and the result on its own page. The same POST works without JavaScript. Keep reCAPTCHA enabled in Formspree; switching to AJAX would require a compatible custom CAPTCHA integration. No real submission should be sent during automated checks; use a local POST receiver instead.
 
 Links can preselect a topic:
 

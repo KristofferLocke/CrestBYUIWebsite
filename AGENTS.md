@@ -7,7 +7,7 @@
 - Keep links relative so repository-based GitHub Pages URLs work. Do not add a hardcoded repository base path.
 - Keep fallback HTML navigation working when JS is disabled. Preserve skip links, visible focus, form labels, dialog keyboard behavior, and reduced-motion support.
 - Sponsorship is in-kind goods, services, and assistance. Do not add cash tiers or invent sponsors, performance data, results, or contact information.
-- Contact is a local message builder and email draft link. Do not imply server-side delivery. No credentials, analytics, backend, or package dependencies are required.
+- Contact uses native HTML POST to the public Formspree endpoint in contact.html. Formspree handles hosted CAPTCHA and confirmation; keep JavaScript limited to validation, topics, and submission state. Do not replace native POST with AJAX without configuring compatible CAPTCHA. Do not promise inbox delivery. No private credentials, analytics, custom backend, or package dependencies are required.
 - Run `python scripts/check_site.py` after edits. Use browser checks for layout/menu/contact changes.
 - Avoid editing brand-source assets as a side effect of site work. Keep bundled font licenses.
 

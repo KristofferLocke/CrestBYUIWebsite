@@ -8,7 +8,7 @@ The design follows the supplied brand system: Midnight Navy, Racing Blue, dark n
 
 1. Extract the ZIP.
 2. In VS Code, choose **File → Open Folder** and select `byui-formula-website`.
-3. Open `index.html` in a browser. Everything works locally, including the menu and message builder.
+3. Open `index.html` in a browser. The menu works locally; contact submissions require an internet connection to Formspree.
 4. For live refresh while editing, install the recommended **Live Server** extension and choose **Open with Live Server** on `index.html`.
 
 Alternative local preview with Python installed:
@@ -17,7 +17,7 @@ Alternative local preview with Python installed:
 python -m http.server 5500
 ```
 
-Visit `http://localhost:5500`. Run that command from this project folder. On some computers, use `python3` or `py` instead of `python`.
+Visit `http://localhost:5500`. Run that command from this project folder. On some computers, use `python3` or `py` instead of `python`. For contact-form testing, open `http://localhost:5500/contact.html` in a full browser rather than the editor's `file://` preview, so network requests use a normal HTTP origin. Check Formspree activation and domain restrictions if submissions are rejected; opening the page through a server alone does not verify form configuration or email delivery.
 
 ## What is included
 
@@ -26,7 +26,7 @@ Visit `http://localhost:5500`. Run that command from this project folder. On som
 | Home | `index.html` | Introduction, concept render, RAVN.1, photo spaces, manual subteam slideshow |
 | About | `about.html` | Mission, work areas, photo spaces, project and competition information, joining invitation |
 | Sponsors | `sponsors.html` | In-kind contributions, partnership process, major and supporting sponsor logo grids |
-| Contact | `contact.html` | Contact details and a local message builder |
+| Contact | `contact.html` | Contact details and a Formspree submission form |
 
 | Change | Start here |
 | --- | --- |
@@ -35,7 +35,7 @@ Visit `http://localhost:5500`. Run that command from this project folder. On som
 | Supplied base colors, fonts, spacing (reference) | `assets/css/tokens.css` |
 | Site colors, layout, and component appearance | `assets/css/site.css` |
 | Header, menu, footer | `assets/js/site.js` |
-| Message preparation behavior | `assets/js/contact.js` |
+| Contact submission behavior | `assets/js/contact.js` |
 | Manual subteam slideshow | `assets/js/subteams.js` |
 
 Read [the editing guide](docs/EDITING.md) for copy-paste examples, [the publishing guide](docs/PUBLISHING.md) when ready to publish, and [the design notes](docs/DESIGN.md) for the rationale and source references.
@@ -73,7 +73,7 @@ This folder is ready for GitHub Pages. All page and asset links are relative, so
 
 ## Message delivery
 
-This is a static website. It prepares an email draft when an address is configured; the visitor sends it from their email app. Without an address, it offers a saved text file or copyable message. It never claims to send an enquiry, and it does not store form fields or send them to a server. Long messages can be saved or copied if an email app cannot handle a long draft link.
+The contact form posts to `https://formspree.io/f/xbgdbqjv`, configured in the form's `action` in `contact.html`. Formspree receives the submitted contact details, topic, and message; GitHub Pages only hosts the static files. Sending navigates to Formspree for hosted CAPTCHA and confirmation, with or without JavaScript. JavaScript adds whitespace validation, topic-based subjects, and duplicate-submit protection; it does not send AJAX requests or announce delivery. Formspree's default hosted reCAPTCHA requires this native POST flow; AJAX needs a separately configured custom CAPTCHA key. The direct email link remains an alternative. Manage recipients, verification, spam protection, and submission limits in the Formspree dashboard. No private API key belongs in this repository.
 
 ## Assets and licensing
 

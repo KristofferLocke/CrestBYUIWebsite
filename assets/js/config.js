@@ -4,7 +4,7 @@
  */
 window.SITE_CONFIG = Object.freeze({
   // Keep the approved public address and matching HTML fallback links current.
-  // Email drafts are local; visitors can also save or copy their message.
+  // Direct email is an alternative to the Formspree form in contact.html.
   contactEmail: "saeformula@byui.edu",
   socials: {
     linkedin: "https://www.linkedin.com/company/byu-i-formula-racing/",
@@ -34,7 +34,7 @@ window.SITE_CONFIG = Object.freeze({
   // group: "major" or "supporting" (default). Recognition is for in-kind support.
   sponsors: [
     { name: "Grand Teton Energy Systems", logo: "assets/images/grand-teton-energy-systems-logo.png", url: "https://www.grandteton.energy/", group: "major" },
-    { name: "Ecotron", logo: "assets/images/ecotron-logo.png", url: "https://ecotron.ai/", group: "major" },
+    { name: "Ecotron", logo: "assets/images/ecotron-logo.png", url: "https://ecotron.ai/news/ecotron-launching-sponsorship-program-to-student-teams/", group: "major" },
     { name: "High Performance Academy", logo: "assets/images/high-performance-academy-logo.png", url: "https://www.hpacademy.com/", group: "major" },
     { name: "Carrozzeria Silvestro", logo: "assets/images/carrozzeria-silvestro-logo.webp", url: "https://carrozzeriasilvestro.com/", group: "major" },
     { name: "Onshape", logo: "assets/images/onshape-logo.png", url: "https://www.onshape.com/en/", group: "supporting" },

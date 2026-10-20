@@ -58,20 +58,21 @@
             </div>
           </div>
         </div>
-        <!-- CONTACT 02 / STATIC-SITE MESSAGE BUILDER.
-             Keep contactEmail in config.js and fallback links current.
-             No backend or external service receives these fields. -->
+        <!-- CONTACT 02 / FORMSPREE CONTACT FORM.
+             Keep the public Formspree endpoint in action and the email fallback current.
+             contact.js adds validation; Formspree handles verification and results. -->
         <div>
           <noscript>
             <div class="note">
-              The message builder needs JavaScript. Use the email link to contact the team directly.
+              Submitting this form opens Formspree for verification and confirmation.
             </div>
           </noscript>
-          <div id="contact-interactive" hidden>
-            <form class="contact-form" id="contact-form" aria-labelledby="form-heading" aria-describedby="contact-help">
-              <h2 id="form-heading">PREPARE A MESSAGE</h2>
-              <p class="form-help" id="contact-help">Prepare a draft to save or copy. This site does not send or store messages.</p>
+          <div id="contact-interactive">
+            <form class="contact-form" id="contact-form" action="https://formspree.io/f/xbgdbqjv" method="POST" aria-labelledby="form-heading" aria-describedby="contact-help">
+              <h2 id="form-heading">SEND A MESSAGE</h2>
+              <p class="form-help" id="contact-help">Your contact details and message will be submitted through Formspree to the team. Sending opens Formspree to complete any verification and show the result. You can also contact us directly using the email link.</p>
               <p class="form-help">All fields are required except organisation.</p>
+              <input type="hidden" name="subject" value="BYU-I Formula Racing — Website enquiry">
               <div class="form-grid">
                 <div class="field">
                   <label for="name">Your name</label>
@@ -95,18 +96,9 @@
                 </div>
               </div>
               <div class="form-actions">
-                <button class="button" type="submit">Prepare message</button>
+                <button class="button" type="submit">Send message</button>
               </div>
-              <p class="form-status" id="form-status" role="status" aria-live="polite" aria-atomic="true"></p>
-              <section class="message-preview" id="message-preview" hidden aria-labelledby="preview-heading">
-                <h3 id="preview-heading">YOUR DRAFT</h3>
-                <pre id="preview-text"></pre>
-                <div class="actions">
-                  <a class="button" id="open-email" hidden>Open email app <span aria-hidden="true">↗</span></a>
-                  <button class="button button-outline" type="button" id="save-message">Save message</button>
-                  <button class="button button-outline" type="button" id="copy-message">Copy message</button>
-                </div>
-              </section>
+              <p class="form-status" id="form-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
             </form>
           </div>
         </div>
