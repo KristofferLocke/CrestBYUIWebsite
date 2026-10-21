@@ -9,7 +9,9 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = ("index.html", "about.html", "sponsors.html", "contact.html")
+PAGES = ("index.html", "about/index.html", "sponsors/index.html", "contact/index.html")
+# Old root .html URLs stay as redirect stubs so bookmarks keep working.
+REDIRECTS = ("about.html", "sponsors.html", "contact.html")
 errors = []
 
 
@@ -83,6 +85,9 @@ def check_reference(base, reference, pages):
         return
     # Keep the requested spelling: resolve() can correct casing on Windows.
     requested = Path(os.path.abspath(base.parent / unquote(url.path))) if url.path else base
+    # Static hosts serve directory URLs from their index.html files.
+    if requested.is_dir():
+        requested = requested / "index.html"
     target = requested.resolve()
     if not requested.is_relative_to(ROOT) or not target.is_relative_to(ROOT):
         errors.append(f"{base.name}: path leaves project: {reference}")
@@ -135,6 +140,13 @@ def main():
             errors.append(f"{name}: missing HTML doctype, UTF-8 charset, or device-width viewport")
         if not page.has_description or not page.has_lang:
             errors.append(f"{name}: missing description or document language")
+    for name in REDIRECTS:
+        path = ROOT / name
+        if not path.exists():
+            errors.append(f"Missing redirect: {name}")
+            continue
+        for ref in Page(path).references:
+            check_reference(path, ref, pages)
     for path, page in pages.items():
         for ref in page.references:
             check_reference(path, ref, pages)
@@ -148,6 +160,7 @@ def main():
     # Inspect static strings in config and shared templates without executing JS.
     for script in (ROOT / "assets/js").glob("*.js"):
         source = script.read_text(encoding="utf-8")
+        source = source.replace("${siteRoot}", "")
         source = re.sub(r"/\*.*?\*/", "", source, flags=re.S)
         source = re.sub(r"^\s*//.*$", "", source, flags=re.M)
         for ref in re.findall(r'[\'"](assets/[^\'"\n]+)[\'"]', source):

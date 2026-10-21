@@ -8,7 +8,7 @@ The design follows the supplied brand system: Midnight Navy, Racing Blue, dark n
 
 1. Extract the ZIP.
 2. In VS Code, choose **File → Open Folder** and select `byui-formula-website`.
-3. Open `index.html` in a browser. The menu works locally; contact submissions require an internet connection to Formspree.
+3. Preview through a local server (Live Server or the Python command below). Page links point to folders such as `about/`, which a server opens as `about/index.html`; double-clicking `index.html` (`file://`) shows folder listings instead. Contact submissions require an internet connection to Formspree.
 4. For live refresh while editing, install the recommended **Live Server** extension and choose **Open with Live Server** on `index.html`.
 
 Alternative local preview with Python installed:
@@ -17,20 +17,20 @@ Alternative local preview with Python installed:
 python -m http.server 5500
 ```
 
-Visit `http://localhost:5500`. Run that command from this project folder. On some computers, use `python3` or `py` instead of `python`. For contact-form testing, open `http://localhost:5500/contact.html` in a full browser rather than the editor's `file://` preview, so network requests use a normal HTTP origin. Check Formspree activation and domain restrictions if submissions are rejected; opening the page through a server alone does not verify form configuration or email delivery.
+Visit `http://localhost:5500`. Run that command from this project folder. On some computers, use `python3` or `py` instead of `python`. For contact-form testing, open `http://localhost:5500/contact/` in a full browser rather than the editor's `file://` preview, so network requests use a normal HTTP origin. Check Formspree activation and domain restrictions if submissions are rejected; opening the page through a server alone does not verify form configuration or email delivery.
 
 ## What is included
 
 | Page | File | Contents |
 | --- | --- | --- |
 | Home | `index.html` | Introduction, concept render, RAVN.1, photo spaces, manual subteam slideshow |
-| About | `about.html` | Mission, work areas, photo spaces, project and competition information, joining invitation |
-| Sponsors | `sponsors.html` | In-kind contributions, partnership process, major and supporting sponsor logo grids |
-| Contact | `contact.html` | Contact details and a Formspree submission form |
+| About | `about/index.html` | Mission, work areas, photo spaces, project and competition information, joining invitation |
+| Sponsors | `sponsors/index.html` | In-kind contributions, partnership process, major and supporting sponsor logo grids |
+| Contact | `contact/index.html` | Contact details and a Formspree submission form |
 
 | Change | Start here |
 | --- | --- |
-| Page wording | The matching `.html` file; search its numbered section comments |
+| Page wording | The matching page's `index.html` file; search its numbered section comments |
 | Email, location, photos, sponsors, sponsor PDF | `assets/js/config.js` |
 | Supplied base colors, fonts, spacing (reference) | `assets/css/tokens.css` |
 | Site colors, layout, and component appearance | `assets/css/site.css` |
@@ -61,7 +61,7 @@ This checks HTML structure and references, local image/font/script paths (includ
 
 ## Project organization and generated files
 
-The four public pages stay at the root. `assets/` contains runtime CSS, JavaScript, images, and licensed fonts; `docs/` contains maintenance guides; `scripts/` contains the dependency-free checker. `.editorconfig` and `.vscode/` provide editor defaults. `brand-source/` holds the original design references, not runtime configuration.
+The homepage is `index.html` at the root; the other pages live in `about/`, `sponsors/`, and `contact/` so they load at clean URLs such as `/sponsors/`. The root `about.html`, `sponsors.html`, and `contact.html` files are only redirects that keep old links working. `assets/` contains runtime CSS, JavaScript, images, and licensed fonts; `docs/` contains maintenance guides; `scripts/` contains the dependency-free checker. `.editorconfig` and `.vscode/` provide editor defaults. `brand-source/` holds the original design references, not runtime configuration.
 
 The current supplied logos live in `assets/images/`; superseded logo files have been removed. The concept render retains its original PNG source alongside its WebP copy. Local review output in `qa/`, Python bytecode, and `.cache/` directories are ignored by Git and should stay out of published files.
 

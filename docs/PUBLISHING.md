@@ -5,7 +5,9 @@ The project is plain static files. GitHub Pages can publish them directly. Local
 ## Put the project in a repository
 
 1. Create a GitHub repository, for example `byui-formula-racing`.
-2. Put this project's **contents** at the repository root. `index.html` should be at the top level, next to `about.html` and `assets/`.
+2. Put this project's **contents** at the repository root. `index.html` should be at the top level, next to `about/`, `sponsors/`, `contact/`, and `assets/`.
+
+Pages use directory URLs (`/about/`, `/sponsors/`, `/contact/`). GitHub Pages cannot send server-side (HTTP 301) redirects, so the old `about.html`, `sponsors.html`, and `contact.html` files remain as small pages that redirect in the browser (JavaScript plus a meta refresh) and keep any `?topic=` or `#section` part. Keep those three files.
 3. Commit and push the files using VS Code's Source Control interface or the terminal.
 
 For a new local repository, run these commands from the project folder. Replace `YOUR-ACCOUNT` and the repository name with your own values:
@@ -41,4 +43,4 @@ git push
 
 Keep paths relative (`assets/images/photo.webp`, not `/assets/images/photo.webp`). Filename capitalization must match exactly. No deployment workflow file or build tool is needed for this setup.
 
-GitHub Pages does not process forms. `contact.html` uses a normal HTML POST to `https://formspree.io/f/xbgdbqjv`, opening Formspree for hosted reCAPTCHA and confirmation. This works with Formspree's built-in CAPTCHA without a custom key or AJAX. Confirm activation, notification recipients, allowed domains, spam protection, and submission limits in the Formspree dashboard. Test the published form with an approved message before relying on it; do not add private Formspree API keys to the site.
+GitHub Pages does not process forms. `contact/index.html` uses a normal HTML POST to `https://formspree.io/f/xbgdbqjv`, opening Formspree for hosted reCAPTCHA and confirmation. This works with Formspree's built-in CAPTCHA without a custom key or AJAX. Confirm activation, notification recipients, allowed domains, spam protection, and submission limits in the Formspree dashboard. Test the published form with an approved message before relying on it; do not add private Formspree API keys to the site.
