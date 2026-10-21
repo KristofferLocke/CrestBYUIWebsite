@@ -4,7 +4,7 @@
  */
 window.SITE_CONFIG = Object.freeze({
   // Keep the approved public address and matching HTML fallback links current.
-  // Direct email is an alternative to the Formspree form in contact.html.
+  // Direct email is an alternative to the Formspree form in contact/index.html.
   contactEmail: "saeformula@byui.edu",
   socials: {
     linkedin: "https://www.linkedin.com/company/byu-i-formula-racing/",

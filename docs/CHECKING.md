@@ -21,6 +21,7 @@ It does not execute JavaScript, fully validate HTML/CSS syntax, check external s
 5. On Contact, confirm required fields block empty or whitespace-only submissions. In browser checks, replace the form action with a local POST receiver: verify all named fields are submitted, duplicate submissions are blocked, and returning with Back re-enables the submit button without clearing the message. Verify there is no AJAX request or premature success message.
 6. Check the real Formspree endpoint, POST fields, topic-based subject, and links that preselect a contact topic. Without JavaScript, confirm the same visible form posts correctly. A real submission sends data to an external service; test hosted CAPTCHA, confirmation, and delivery separately with an explicitly approved message, then verify it in the Formspree dashboard and recipient inbox.
 7. Check any new photos, sponsor links, or PDF downloads and confirm no horizontal scrolling occurs.
+8. Visit `/about/`, `/sponsors/`, and `/contact/` through a local server, not `file://`. Then open the old `/about.html#team-information`, `/sponsors.html`, and `/contact.html?topic=joining` addresses and confirm each lands on the new folder URL with its `#section` or `?topic=` intact. Confirm the favicon appears in the tab.
 
 Use the browser's developer tools Console and Network panels to catch broken assets or JavaScript errors. Test on your actual phone before sharing the public URL. The implementation targets current Chrome, Edge, Safari, and Firefox with native modal dialog support.
 

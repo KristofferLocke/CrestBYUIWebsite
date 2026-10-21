@@ -4,7 +4,7 @@
 
 Page content lives in HTML. Shared settings live in `assets/js/config.js`. Shared UI lives in `assets/js/site.js`. CSS controls appearance. This separation lets you make a wording change without understanding JavaScript or installing a toolchain.
 
-Keep this project folder together. Relative asset links work because `index.html`, the other pages, and the `assets` folder keep the same relationship.
+Keep this project folder together. Relative asset links work because `index.html`, the page folders, and the `assets` folder keep the same relationship.
 
 ## 1. Change text
 
@@ -31,9 +31,9 @@ Email format:
 contactEmail: "your-approved-team-address@your-domain.org",
 ```
 
-Use the actual address approved by your team. Save and reload `contact.html`. The direct email link is independent of the Formspree form's recipient settings.
+Use the actual address approved by your team. Save and reload `contact/index.html`. The direct email link is independent of the Formspree form's recipient settings.
 
-The form's `action="https://formspree.io/f/xbgdbqjv"` and `method="POST"` in `contact.html` configure submission. Change the public endpoint there if needed; no private API key or JavaScript endpoint setting is required. Manage notification recipients and form activation in the Formspree dashboard, not `contactEmail`.
+The form's `action="https://formspree.io/f/xbgdbqjv"` and `method="POST"` in `contact/index.html` configure submission. Change the public endpoint there if needed; no private API key or JavaScript endpoint setting is required. Manage notification recipients and form activation in the Formspree dashboard, not `contactEmail`.
 
 `contact.js` adds field validation, a topic-based subject, and duplicate-submit protection to the native HTML POST. It leaves named fields enabled so all values are posted. Formspree receives the existing name, email, organisation, topic, and message fields, then handles hosted CAPTCHA and the result on its own page. The same POST works without JavaScript. Keep reCAPTCHA enabled in Formspree; switching to AJAX would require a compatible custom CAPTCHA integration. No real submission should be sent during automated checks; use a local POST receiver instead.
 
@@ -41,10 +41,10 @@ Links can preselect a topic:
 
 | Link | Selected topic |
 | --- | --- |
-| `contact.html?topic=sponsorship` | Sponsorship |
-| `contact.html?topic=joining` | Joining the team |
-| `contact.html?topic=technical` | Technical assistance |
-| `contact.html` | General enquiry |
+| `contact/?topic=sponsorship` | Sponsorship |
+| `contact/?topic=joining` | Joining the team |
+| `contact/?topic=technical` | Technical assistance |
+| `contact/` | General enquiry |
 
 ## 3. Add your own team photo
 
@@ -113,7 +113,7 @@ Create `assets/downloads/`, add the approved PDF, and set:
 sponsorPacket: "assets/downloads/sponsor-packet.pdf",
 ```
 
-The download button then appears on `sponsors.html`. Use your sponsorship packet, not the internal brand guide. The button stays hidden while the setting is empty.
+The download button then appears on `sponsors/index.html`. Use your sponsorship packet, not the internal brand guide. The button stays hidden while the setting is empty.
 
 ## 6. Change colors, typography, and spacing
 
@@ -170,7 +170,7 @@ Edit the three subteam descriptions in `index.html` under `HOME 03 / SUBTEAMS`. 
 
 ## About navigation
 
-The About dropdown links to `about.html#team-information` and `about.html#competition-information`. Edit team copy in the mission section and add verified event details under `ABOUT 04 / COMPETITION`. The desktop and mobile dropdowns use native `details` elements; keep their keyboard and Escape behavior in `site.js`.
+The About dropdown links to `about/#team-information` and `about/#competition-information`. Edit team copy in the mission section and add verified event details under `ABOUT 04 / COMPETITION`. The desktop and mobile dropdowns use native `details` elements; keep their keyboard and Escape behavior in `site.js`.
 
 ## Page prefetching
 
@@ -185,3 +185,5 @@ The concept render has a lossless WebP copy in `assets/images/`. Its original PN
 The header uses `combined-crest.webp` (1293 ? 1217). The footer, including the fallback HTML in all four pages, uses `crest-horizontal.webp` (1983 ? 793). `small-crest.webp` (1293 ? 1216) is the supplied compact variant, stored for future placements.
 
 The existing `.brand-lockup` and `.footer-logo` rules in `site.css` retain the header and footer sizing, spacing, responsive behavior, and proportional image fitting. Intrinsic HTML image dimensions match the new artwork. Superseded logo files and their references have been removed; the original brand guide, palette, tokens, and font licenses remain intact.
+
+The favicon files `favicon-32.png` (32 × 32, browser tab) and `apple-touch-icon.png` (180 × 180, phone home screens) were generated from `small-crest.webp`, scaled to fit a transparent square without stretching or cropping. Every page links them in its `<head>`. The source WebP has a transparent background, and some fully transparent pixels still hold leftover color values. If you regenerate the icons, use a tool that keeps the alpha channel; a conversion that drops it fills the background and can expose those hidden colors as purple streaks. Check the result over light and dark backgrounds before replacing the files.

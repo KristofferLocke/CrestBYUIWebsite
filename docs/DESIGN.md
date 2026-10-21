@@ -26,6 +26,8 @@ The identity follows the current supplied guide's **BYU-I Formula Racing** namin
 
 The detailed shield is not forced into a favicon. A separate approved micro mark can be added later. Nordic_Modern was not provided; project text does not pretend to be the custom model wordmark.
 
+Update: the site now uses the compact `small-crest.webp` as its favicon. The detailed `combined-crest.webp` is still not used at that size. See "Current logo library" in [EDITING.md](EDITING.md).
+
 ## Navigation and imagery
 
 The inset, rounded header centers `combined-crest.webp`. At desktop widths, Home and About sit to its left; Contact and Sponsors sit to its right. About opens a native `details` dropdown for the team and competition sections. Below 768px, the menu button opens a native modal dialog with the same four destinations and About section links.
