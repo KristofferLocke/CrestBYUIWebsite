@@ -40,6 +40,8 @@ Visit `http://localhost:5500`. Run that command from this project folder. On som
 
 Read [the editing guide](docs/EDITING.md) for copy-paste examples, [the publishing guide](docs/PUBLISHING.md) when ready to publish, and [the design notes](docs/DESIGN.md) for the rationale and source references.
 
+The [email signature guide](docs/EMAIL-SIGNATURE.md) covers the hosted PNG logo, Outlook installation, future logo updates, and verification. The standalone signature is [docs/email-signature.html](docs/email-signature.html).
+
 ## Finish your content
 
 The public email and social links are configured. Several other details await approved content:
