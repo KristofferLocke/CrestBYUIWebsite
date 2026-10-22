@@ -127,8 +127,17 @@ details[open] > summary .dropdown-chevron { transform: rotate(180deg); }
 .hero h1, .hero h2, .hero h3 { color: white; }
 /* Silver speed marks sit along the panel edge, clear of headings and copy. */
 .hero::after { content: ""; position: absolute; bottom: 0; right: 0; width: min(42%, 32rem); height: .65rem; background: repeating-linear-gradient(120deg, var(--racing-silver) 0 2rem, transparent 2rem 3rem); pointer-events: none; }
-.home-hero { padding-bottom: 7rem; }
-.home-hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(90deg, #031f3dfa 0%, #031f3de6 35%, #031f3da6 60%, #031f3d33 100%), url("../images/home-team.jpeg"); background-size: cover; background-position: center 65%; pointer-events: none; }
+.home-hero { padding-bottom: max(11rem, calc(9vw + 7rem)); border-bottom: 0; }
+.home-hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(90deg, #031f3de6 0%, #031f3db3 35%, #031f3d66 60%, #031f3d1a 100%), url("../images/home-team.jpeg"); background-size: cover; background-position: center 35%; pointer-events: none; }
+/* Draw the diagonal directly with one-pixel transitions to soften its edges. */
+.home-hero::after {
+  width: 100%; height: calc(9vw + 1.5rem); bottom: 0;
+  background: linear-gradient(175deg,
+    transparent calc(50% - .5rem - 1px), var(--brand-blue) calc(50% - .5rem),
+    var(--brand-blue) calc(50% - 1px), var(--brand-navy) 50%,
+    var(--brand-navy) calc(50% + .25rem - 1px), var(--racing-silver) calc(50% + .25rem),
+    var(--racing-silver) calc(50% + .5rem - 1px), var(--surface-subtle) calc(50% + .5rem));
+}
 .home-hero .hero-copy { max-width: 52rem; }
 .home-hero .lead { max-width: 40ch; }
 .hero p { color: var(--text-on-dark); }
@@ -144,13 +153,14 @@ details[open] > summary .dropdown-chevron { transform: rotate(180deg); }
 .hero-aside { padding-left: 2rem; border-left: 1px solid #617a94; }
 .hero-aside .lead { max-width: 36ch; }
 .hero-aside p:last-child { margin-bottom: 0; }
-.hero-quote { margin: 0; border-left-color: var(--brand-blue); }
+.hero-quote, .home-quote { background: #292d32; border-radius: var(--radius-card); }
+.hero-quote { margin: 0; padding: 2rem; border-left-color: var(--brand-blue); }
 .hero-quote blockquote { margin: 0 0 1.5rem; }
 .hero-quote figcaption { display: grid; gap: .25rem; color: var(--text-on-dark); font-size: .875rem; }
 .hero-quote .quote-author { color: var(--text); font-weight: 600; }
 
 /* 04 / Content components */
-.home-quote { position: relative; margin-block: clamp(3rem, 5vw, 5rem) 0; padding: clamp(1.5rem, 4vw, 3rem); border-left: 4px solid var(--brand-blue); }
+.home-quote { position: relative; z-index: 1; margin-block: min(-3rem, -4vw) 0; padding: clamp(1.5rem, 4vw, 3rem); border-left: 4px solid var(--brand-blue); }
 .home-quote-mark { display: block; height: 2.5rem; color: var(--brand-blue); font-family: var(--font-display); font-size: 6rem; line-height: 1; }
 .home-quote blockquote { margin: 1rem 0 1.5rem; }
 .home-quote blockquote p { max-width: 55ch; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.75rem, 3.2vw, 2.5rem); line-height: 1.2; text-wrap: pretty; }
@@ -162,15 +172,36 @@ details[open] > summary .dropdown-chevron { transform: rotate(180deg); }
 .model-panel::after { content: ""; position: absolute; right: 1.5rem; bottom: -2rem; width: 8rem; height: 12rem; transform: skewX(-25deg); background: repeating-linear-gradient(90deg, #c6ced824 0 1.5rem, transparent 1.5rem 2.5rem); pointer-events: none; }
 .model-panel .eyebrow { color: var(--text-on-dark); margin-bottom: 2rem; }
 .model-name { display: block; font-family: var(--font-display); font-weight: 600; font-size: clamp(4rem, 8vw, 6.5rem); line-height: 1; letter-spacing: .015em; position: relative; z-index: 1; }
-.support-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.support-grid-disciplines { max-width: 52rem; margin-inline: auto; }
-.support-card { padding: 2rem; border: 1px solid var(--silver-edge); border-top: 3px solid var(--racing-silver); border-radius: var(--radius-card); background: #172b3d; }
-.support-card h3 { margin-bottom: 1rem; }
-.support-card p { color: var(--text-muted); font-size: .9375rem; }
-.support-card ul { padding-left: 1.1rem; font-size: .875rem; }
-.support-card li { margin-bottom: .5rem; }
-@media (min-width: 768px) {
-  .support-grid-disciplines { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* Shared About and Sponsors selector: selected text at left, choices at right. */
+.discipline-panel + .discipline-panel { margin-top: 2rem; }
+.discipline-screen { min-width: 0; min-height: 23rem; margin: 0; padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; gap: 1.5rem; border-radius: .75rem; background: #27394b; }
+.discipline-label { margin: 0; color: var(--link); font-size: 1rem; }
+.discipline-screen h3 { margin: 0; font-size: clamp(1.75rem, 3vw, 2.5rem); }
+.discipline-copy { max-width: 50ch; margin: 0; color: var(--text-muted); }
+.discipline-panel > .discipline-copy { margin-top: 1.5rem; }
+.discipline-copy ul { margin: 0; padding-left: 1.25rem; }
+.discipline-copy li + li { margin-top: .25rem; }
+.discipline-explorer.is-interactive { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1rem; }
+.discipline-explorer.is-interactive::before { content: ""; grid-area: 1 / 1 / 2 / -1; border-radius: 1rem; background: #292d32; }
+.is-interactive .discipline-panel { display: contents; }
+.is-interactive .discipline-screen { grid-area: 1 / 1; margin: 1.5rem 0 1.5rem 1.5rem; }
+.is-interactive .discipline-panel > .discipline-copy { grid-column: 1 / -1; grid-row: 3; }
+.discipline-controls { grid-area: 1 / 2; z-index: 1; display: grid; grid-auto-rows: 1fr; margin: 1.5rem 1.5rem 1.5rem 0; }
+.discipline-button { display: flex; flex-direction: column; justify-content: center; align-items: start; gap: .5rem; min-width: 0; min-height: var(--control-min); padding: .75rem 1rem; border: 0; border-bottom: 1px solid var(--silver-edge); background: transparent; color: var(--text); text-align: left; cursor: pointer; }
+.discipline-number { color: var(--text-muted); font-size: .8125rem; }
+.discipline-name { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.1; }
+.discipline-button:hover { background: #ffffff08; }
+.discipline-button[aria-pressed="true"] { background: #ffffff08; border-bottom-color: var(--link); box-shadow: inset 3px 0 var(--link); }
+.discipline-button[aria-pressed="true"] .discipline-name,
+.discipline-button[aria-pressed="true"] .discipline-number { color: var(--link); }
+@media (max-width: 767px) {
+  .discipline-explorer.is-interactive { grid-template-columns: minmax(0, 1fr); }
+  .discipline-explorer.is-interactive::before { grid-area: 1 / 1 / 3 / -1; }
+  .is-interactive .discipline-screen { grid-area: 1 / 1; min-height: 18rem; margin: 1rem 1rem 0; }
+  .discipline-controls { grid-area: 2 / 1; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, 1fr); gap: .5rem; margin: 1rem; }
+  .discipline-controls > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .discipline-button { padding: .75rem; }
+  .discipline-name { font-size: 1.5rem; }
 }
 .cta-section { border-block: 1px solid var(--silver-edge); padding-block: 6rem; background: var(--brand-navy); color: white; }
 .cta-inner { display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
@@ -187,9 +218,8 @@ details[open] > summary .dropdown-chevron { transform: rotate(180deg); }
 .sponsor-group > h3 { margin-bottom: 1.5rem; }
 .sponsor-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; }
 .sponsor-grid-major { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.sponsor-slot, .sponsor-entry { min-width: 0; min-height: 12rem; }
+.sponsor-entry { min-width: 0; min-height: 12rem; }
 .sponsor-grid-major > * { min-height: 16rem; }
-.sponsor-slot { display: grid; place-items: center; border: 1px dashed var(--silver-edge); border-top: 2px solid var(--racing-silver); border-radius: var(--radius-card); background: #ffffff02; color: var(--text-muted); font-size: .875rem; }
 .sponsor-entry { display: flex; flex-direction: column; justify-content: center; overflow-wrap: anywhere; padding: 1.5rem; background: #172b3d; border: 1px solid var(--silver-edge); border-top: 2px solid var(--racing-silver); border-radius: var(--radius-card); text-align: center; }
 .sponsor-entry img { background: #fff; padding: .75rem; border-radius: var(--radius-control); height: 5rem; width: 100%; object-fit: contain; margin-bottom: 1rem; }
 /* Give major sponsors matching logo panels with room for stacked marks. */
@@ -218,7 +248,8 @@ a.sponsor-entry:hover { border-color: var(--link); }
 .photo-section .photo-placeholder .eyebrow::before { display: none; }
 .photo-section .photo-placeholder p { margin-top: .75rem; }
 .photo-wide .photo-placeholder, .photo-wide .team-photo { aspect-ratio: 21 / 9; }
-.car-render .team-photo { object-fit: contain; background: var(--brand-navy); border: 1px solid var(--border); }
+/* Oversized crest stripes sit behind the transparent concept render. */
+.car-render .team-photo { object-fit: contain; background: url("../images/brand-stripes.svg") center / cover no-repeat, var(--brand-navy); border: 1px solid var(--border); }
 .hero, .cta-section { background-image: repeating-linear-gradient(125deg, transparent 0 79px, #ffffff03 80px 81px); }
 @media (max-width: 767px) {
   .photo-grid { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -228,7 +259,7 @@ a.sponsor-entry:hover { border-color: var(--link); }
 
 /* Homepage subteams: manual slides with a readable no-JavaScript fallback. */
 .photo-section + .subteams-section { padding-top: clamp(3rem, 5vw, 5rem); }
-.subteams-section { border-block: 1px solid var(--silver-edge); background-color: #0d2235; }
+.subteams-section { border-block: 2px solid var(--racing-silver); background-color: #0d2235; }
 .subteam-slide { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(2rem, 5vw, 5rem); }
 .subteam-slide + .subteam-slide { margin-top: 3rem; }
 .subteams-section[aria-roledescription="carousel"] .subteam-slide { margin-top: 0; }
@@ -270,10 +301,6 @@ input:hover, select:hover, textarea:hover { border-color: var(--link); }
 .form-help { color: var(--text-muted); font-size: .875rem; margin-bottom: 1.5rem; }
 .form-actions { margin-top: 1.5rem; }
 .form-status { font-size: .875rem; margin-top: 1rem; color: var(--text); }
-.message-preview { margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
-.message-preview h3 { font-size: 1.5rem; }
-.message-preview pre { padding: 1rem; background: var(--surface-subtle); font-family: var(--font-body); white-space: pre-wrap; overflow-wrap: anywhere; font-size: .875rem; line-height: 1.65; }
-.message-preview .actions { margin-top: 1rem; }
 
 /* 06 / Footer */
 .site-footer { background: var(--brand-navy); color: var(--text-on-dark); padding-block: 2.5rem; border-top: 2px solid var(--racing-silver); }
@@ -295,13 +322,16 @@ a.social-link:hover { color: white; background: var(--surface); }
 .footer-bottom p { margin-bottom: 0; }
 
 /* 07 / Tablet and phone layouts */
+/* Stop ultrawide screens enlarging the photo until faces leave the hero. */
+@media (min-width: 100rem) {
+  .home-hero::before { max-width: 100rem; margin-inline: auto; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+}
 @media (max-width: 1023px) {
   .hero { padding-top: 10rem; }
   .hero-grid { gap: 2rem; }
   .split-section { gap: 3rem; }
   .contact-layout { gap: 2rem; }
   .contact-form { padding: 2rem; }
-  .support-card { padding: 1.5rem; }
   .car-grid { gap: 3rem; }
 }
 @media (max-width: 767px) {
@@ -315,7 +345,7 @@ a.social-link:hover { color: white; background: var(--surface); }
   .menu-top { padding-bottom: .5rem; }
   .section { padding-block: 4rem; }
   .hero { padding-top: 9rem; }
-  .home-hero::before { background-image: linear-gradient(90deg, #031f3df5, #031f3dcc), url("../images/home-team.jpeg"); background-position: 60% center; }
+  .home-hero::before { background-image: linear-gradient(90deg, #031f3db3, #031f3d73), url("../images/home-team.jpeg"); background-position: 60% center; }
   .hero-grid { grid-template-columns: 1fr; gap: 3rem; padding-bottom: 2rem; }
   .hero-copy .lead { max-width: 42ch; }
   .hero-copy h1 { font-size: clamp(3rem, 10vw, 4.5rem); }
@@ -323,15 +353,15 @@ a.social-link:hover { color: white; background: var(--surface); }
   .page-hero { padding-bottom: 3rem; }
   .page-hero .hero-grid { gap: 2rem; }
   .hero-aside { padding-left: 1rem; }
+  .hero-quote { padding: 1.5rem; }
   .hero-aside .lead { font-size: 1rem; }
   .car-grid, .split-section, .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
   .section-heading { display: block; margin-bottom: 2rem; }
   .section-heading > p { margin-top: 1.25rem; }
-  .support-grid, .sponsor-grid-major { grid-template-columns: 1fr; }
+  .sponsor-grid-major { grid-template-columns: 1fr; }
   .sponsor-grid-supporting { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
   .sponsor-grid-supporting > * { min-height: 10rem; }
   .sponsor-entry { padding: 1rem; }
-  .support-card { padding: 2rem; }
   .model-panel { padding: 2rem; }
   .cta-inner { flex-direction: column; align-items: stretch; }
   .cta-section { padding-block: 3rem; }

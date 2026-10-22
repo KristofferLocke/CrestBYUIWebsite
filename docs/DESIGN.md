@@ -24,25 +24,23 @@ The identity follows the current supplied guide's **BYU-I Formula Racing** namin
 | Reduced motion | CSS and menu animations respect the visitor's system preference |
 | Real evidence | No invented team statistics, results, sponsors, or vehicle specifications |
 
-The detailed shield is not forced into a favicon. A separate approved micro mark can be added later. Nordic_Modern was not provided; project text does not pretend to be the custom model wordmark.
-
-Update: the site now uses the compact `small-crest.webp` as its favicon. The detailed `combined-crest.webp` is still not used at that size. See "Current logo library" in [EDITING.md](EDITING.md).
+The current website uses **VIKING.1** as its project name. The original guide's **RAVN.1** naming is preserved in the source documents. Nordic_Modern was not provided; project text uses Barlow Condensed. The compact `small-crest.webp` supplies the favicon and touch icon; see "Current logo library" in [EDITING.md](EDITING.md).
 
 ## Navigation and imagery
 
-The inset, rounded header centers `combined-crest.webp`. At desktop widths, Home and About sit to its left; Contact and Sponsors sit to its right. About opens a native `details` dropdown for the team and competition sections. Below 768px, the menu button opens a native modal dialog with the same four destinations and About section links.
+The inset, rounded header centers `combined-crest.webp`. At desktop widths, Home and About sit to its left; Sponsors and Contact sit to its right. About opens a native `details` dropdown for the team and competition sections. Below 768px, the menu button opens a native modal dialog with the same four destinations and About section links.
 
-The footer uses `crest-horizontal.webp`. The fixed header hides when the footer logo reaches the viewport, while preserving focused navigation and an open mobile menu. The supplied compact variant is retained as `small-crest.webp` for future use. Existing header and footer layout rules are preserved.
+The footer uses `crest-horizontal.webp`. The fixed header hides when the footer logo reaches the viewport, while preserving focused navigation and an open mobile menu.
 
-Home shows a labeled concept render and a manual three-slide subteam carousel. Other photo slots remain labeled placeholders until team images are configured. No external site's photography is used.
+Home shows a labeled concept render, team/workshop photos, and a manual three-slide subteam carousel. About and Sponsors share a work-area/contribution selector. Remaining empty photo slots display short, relevant descriptions. About introduces each area of work and the general competition challenge without claiming specific events or results.
 
 ## Structure and maintenance
 
-Four real HTML documents make content easy to edit and give each page its own title and description. A single shared script keeps the menu and footer consistent without a build tool. Core page copy and fallback navigation remain available without JavaScript; optional configured content and message preparation require it.
+Four real HTML documents make content easy to edit and give each page its own title and description. A single shared script keeps the menu and footer consistent without a build tool. Core page copy, fallback navigation, and the native contact POST remain available without JavaScript; optional configured photos and sponsor cards require it.
 
 The JSON palette is retained for reference or design-tool use. It is not a second runtime theme source. The supplied `tokens.css` defines the base system; `site.css` defines the site's dark palette overrides and components. The bundled fonts are TrueType files, declared in `site.css`.
 
-There is no analytics, third-party font request, external image dependency, database, or local storage. Form fields remain in the current page until the visitor copies, saves, or opens a draft in an email application.
+The website has no analytics scripts, third-party font request, external image dependency, database, or local storage. On submission, the native contact form sends the visitor's contact details, topic, and message to Formspree for hosted CAPTCHA and confirmation. JavaScript validates fields and manages submission state; it does not send AJAX requests or announce inbox delivery. The email link is an alternative.
 
 ## Remaining content choices
 

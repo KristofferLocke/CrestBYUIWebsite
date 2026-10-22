@@ -12,6 +12,7 @@
   <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
   <script src="../assets/js/config.js" defer></script>
   <script src="../assets/js/site.js" defer></script>
+  <script src="../assets/js/disciplines.js" defer></script>
 </head>
 <body data-page="sponsors">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -28,8 +29,8 @@
     <section class="hero page-hero" aria-labelledby="sponsors-title">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">Sponsors / Build with us</span>
-          <h1 id="sponsors-title">GREAT BUILDS.<br><span class="accent">SHARED EFFORT.</span></h1>
+          <span class="eyebrow">Build with us</span>
+          <h1 id="sponsors-title">OUR FUEL<br><span class="accent">TO VICTORY.</span></h1>
         </div>
         <figure class="hero-aside hero-quote">
           <blockquote>
@@ -47,8 +48,7 @@
       <div class="container">
         <div class="section-heading">
           <div>
-            <p class="eyebrow section-tag">Our partners</p>
-            <h2 id="partners-heading">PART OF THE BUILD.</h2>
+            <p class="eyebrow section-tag" id="partners-heading">Our partners</p>
           </div>
         </div>
         <section class="sponsor-group" aria-labelledby="major-sponsors-heading">
@@ -73,49 +73,59 @@
         </div>
         <!-- These are potential contribution categories. Confirm specific needs
              before turning them into a dated procurement or wish list. -->
-        <div class="support-grid">
-          <article class="support-card">
-            <h3>GOODS &amp; MATERIALS</h3>
-            <ul>
-              <li>
-                Project-specific components
-              </li>
-              <li>
-                Specified raw material
-              </li>
-              <li>
-                Workshop consumables and tools
-              </li>
-            </ul>
-          </article>
-          <article class="support-card">
-            <h3>SERVICES</h3>
-            <ul>
-              <li>
-                Machining and fabrication
-              </li>
-              <li>
-                Specialist manufacturing processes
-              </li>
-              <li>
-                Inspection and testing services
-              </li>
-            </ul>
-          </article>
-          <article class="support-card">
-            <h3>TECHNICAL ASSISTANCE</h3>
-            <ul>
-              <li>
-                Design reviews and mentoring
-              </li>
-              <li>
-                Software and application support
-              </li>
-              <li>
-                Testing and process guidance
-              </li>
-            </ul>
-          </article>
+        <div class="discipline-explorer" data-disciplines>
+          <div class="discipline-controls" role="group" aria-label="Choose a way to contribute" hidden>
+            <button class="discipline-button" type="button" aria-pressed="true" aria-controls="goods-panel">
+              <span class="discipline-number">01</span><span class="discipline-name">GOODS &amp; MATERIALS</span>
+            </button>
+            <button class="discipline-button" type="button" aria-pressed="false" aria-controls="services-panel">
+              <span class="discipline-number">02</span><span class="discipline-name">SERVICES</span>
+            </button>
+            <button class="discipline-button" type="button" aria-pressed="false" aria-controls="assistance-panel">
+              <span class="discipline-number">03</span><span class="discipline-name">TECHNICAL ASSISTANCE</span>
+            </button>
+          </div>
+          <!-- All contribution details remain visible without JavaScript. -->
+          <div class="discipline-panel" data-discipline-panel>
+            <div class="discipline-screen" id="goods-panel">
+              <p class="discipline-label">01 / GOODS &amp; MATERIALS</p>
+              <h3>GOODS &amp; MATERIALS</h3>
+              <div class="discipline-copy">
+                <ul>
+                  <li>Project-specific components</li>
+                  <li>Specified raw material</li>
+                  <li>Workshop consumables and tools</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="discipline-panel" data-discipline-panel>
+            <div class="discipline-screen" id="services-panel">
+              <p class="discipline-label">02 / SERVICES</p>
+              <h3>SERVICES</h3>
+              <div class="discipline-copy">
+                <ul>
+                  <li>Machining and fabrication</li>
+                  <li>Specialist manufacturing processes</li>
+                  <li>Inspection and testing services</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="discipline-panel" data-discipline-panel>
+            <div class="discipline-screen" id="assistance-panel">
+              <p class="discipline-label">03 / TECHNICAL ASSISTANCE</p>
+              <h3>TECHNICAL ASSISTANCE</h3>
+              <div class="discipline-copy">
+                <ul>
+                  <li>Design reviews and mentoring</li>
+                  <li>Software and application support</li>
+                  <li>Testing and process guidance</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <p class="sr-only" data-discipline-status role="status"></p>
         </div>
         <div class="actions section-actions">
           <a class="button" href="../contact/?topic=sponsorship">Discuss a partnership <span aria-hidden="true">↗</span></a>

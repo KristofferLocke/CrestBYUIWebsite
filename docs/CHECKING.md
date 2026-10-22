@@ -10,7 +10,7 @@ python scripts/check_site.py
 
 The checker requires Python 3.9+ and uses only Python's standard library. It checks all four HTML pages, duplicate IDs and attributes, one primary heading and main landmark per page, document titles, UTF-8 declarations, viewport settings, image alt attributes, document descriptions, local links and fragment IDs, referenced scripts/styles, and CSS image/font paths. It also checks quoted local asset paths in shared JavaScript and configuration, plus JSON syntax and duplicate JSON properties in the editor settings and source palette. Local paths must stay inside the project and match filename capitalization. A nonzero exit means something needs attention.
 
-It does not execute JavaScript, fully validate HTML/CSS syntax, check external services, or deliver messages. It does not certify accessibility, university branding, or factual accuracy. JSON palette validation does not alter the original brand file.
+It also checks the legacy redirects and public email signature, local Markdown links in README and the maintenance guides, allowed URL schemes, the native Formspree POST configuration, and Wrangler configuration syntax. It does not execute JavaScript, fully validate HTML/CSS syntax, check external services, or deliver messages. It does not certify accessibility, university branding, or factual accuracy. JSON palette validation does not alter the original brand file.
 
 ## Browser review after layout or behavior changes
 
@@ -18,8 +18,9 @@ It does not execute JavaScript, fully validate HTML/CSS syntax, check external s
 2. Open the About dropdown on desktop. On a phone width, open the menu and its About dropdown, use Tab and Shift+Tab, follow each link, and press Escape. Check focus returns to the menu button after closing.
 3. Use the keyboard to reach **Skip to content** and activate it.
 4. On Home, use the subteam arrows, slide selectors, and keyboard arrow keys. Confirm only the selected slide appears; with JavaScript disabled, all three should remain readable.
+   On About and Sponsors, activate every work-area/contribution button with the keyboard. Confirm only its panel appears and its selected state updates; without JavaScript all panels should be readable.
 5. On Contact, confirm required fields block empty or whitespace-only submissions. In browser checks, replace the form action with a local POST receiver: verify all named fields are submitted, duplicate submissions are blocked, and returning with Back re-enables the submit button without clearing the message. Verify there is no AJAX request or premature success message.
-6. Check the real Formspree endpoint, POST fields, topic-based subject, and links that preselect a contact topic. Without JavaScript, confirm the same visible form posts correctly. A real submission sends data to an external service; test hosted CAPTCHA, confirmation, and delivery separately with an explicitly approved message, then verify it in the Formspree dashboard and recipient inbox.
+6. Check the real Formspree endpoint, POST fields, topic-based subject, and links that preselect a contact topic. Unknown topic values must leave General enquiry selected. Without JavaScript, confirm the same visible form posts correctly. A real submission sends data to an external service; test hosted CAPTCHA, confirmation, and delivery separately with an explicitly approved message, then verify it in the Formspree dashboard and recipient inbox.
 7. Check any new photos, sponsor links, or PDF downloads and confirm no horizontal scrolling occurs.
 8. Visit `/about/`, `/sponsors/`, and `/contact/` through a local server, not `file://`. Then open the old `/about.html#team-information`, `/sponsors.html`, and `/contact.html?topic=joining` addresses and confirm each lands on the new folder URL with its `#section` or `?topic=` intact. Confirm the favicon appears in the tab.
 

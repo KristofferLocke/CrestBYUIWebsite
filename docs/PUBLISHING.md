@@ -43,4 +43,10 @@ git push
 
 Keep paths relative (`assets/images/photo.webp`, not `/assets/images/photo.webp`). Filename capitalization must match exactly. No deployment workflow file or build tool is needed for this setup.
 
+## Cloudflare preview assets
+
+`wrangler.jsonc` also supports the existing Cloudflare preview setup. Its asset directory is the repository root. Keep `.assetsignore`: it allows the four pages, legacy redirects, runtime assets, bundled font licenses, optional sponsorship PDFs, and the public email-signature HTML. Maintenance guides, scripts, original brand references, source-only images, Git history, local review output, credentials, and deployment configuration are excluded from the upload. Add any new public asset types deliberately. See [Cloudflare's asset exclusion documentation](https://developers.cloudflare.com/workers/static-assets/binding/#ignoring-assets).
+
+`.gitignore` protects local environment files and Wrangler state from accidental commits; it does not control uploads. The asset filter applies to Wrangler, not GitHub Pages. Root-based GitHub Pages publishing serves committed files, including documentation and brand references, so keep all committed content public-safe. Preserve the hosted `docs/email-signature.html` and `assets/images/email-signature.png` URLs used by the signature guide.
+
 GitHub Pages does not process forms. `contact/index.html` uses a normal HTML POST to `https://formspree.io/f/xbgdbqjv`, opening Formspree for hosted reCAPTCHA and confirmation. This works with Formspree's built-in CAPTCHA without a custom key or AJAX. Confirm activation, notification recipients, allowed domains, spam protection, and submission limits in the Formspree dashboard. Test the published form with an approved message before relying on it; do not add private Formspree API keys to the site.

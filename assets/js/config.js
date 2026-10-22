@@ -18,7 +18,7 @@ window.SITE_CONFIG = Object.freeze({
   sponsorPacket: "",
 
   // Add real team photos relative to the site root. Update alt text too.
-  // Empty src keeps the clearly labeled photography placeholder.
+  // Empty src keeps the existing HTML image or descriptive text card.
   photos: {
     workshop: { src: "", alt: "", caption: "" },
     car: { src: "assets/images/carrender.webp", alt: "Front view of a blue and white formula car concept render", caption: "Concept render." },

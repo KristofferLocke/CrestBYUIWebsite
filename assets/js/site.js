@@ -192,6 +192,8 @@
     link.href = `mailto:${publicEmail}`;
     link.setAttribute("aria-label", `Email ${publicEmail}`);
     link.title = `Email ${publicEmail}`;
+    const address = link.querySelector("[data-email-address]");
+    if (address) address.textContent = publicEmail;
   });
   document.querySelectorAll("[data-social]").forEach(link => {
     const url = config.socials?.[link.dataset.social];
@@ -245,11 +247,21 @@
       const heading = document.createElement("h3");
       heading.textContent = sponsor.name;
       article.append(img, heading);
-      const placeholder = grid.querySelector("[data-sponsor-placeholder]");
-      if (placeholder) placeholder.replaceWith(article);
-      else grid.append(article);
+      grid.append(article);
     }
   }
+  // Local-file previews do not resolve folder URLs to their index documents.
+  // Apply this after rendering so header, footer, and page-content links agree.
+  if (window.location.protocol === "file:") {
+    const pagePaths = new Set(pages.map(page => new URL(page.href, window.location.href).pathname));
+    document.querySelectorAll("a[href]").forEach(link => {
+      const url = new URL(link.href, window.location.href);
+      if (url.protocol !== "file:" || !pagePaths.has(url.pathname)) return;
+      const href = link.getAttribute("href");
+      link.setAttribute("href", href.replace(/\/(?=[?#]|$)/, "/index.html"));
+    });
+  }
+
   // Warm only the four site documents; normal link navigation stays native.
   // Prefetch is a browser hint, so unsupported browsers simply ignore it.
   if (/^https?:$/.test(window.location.protocol)) {

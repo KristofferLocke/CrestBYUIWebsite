@@ -8,10 +8,10 @@
   <link rel="canonical" href="contact/">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
   <!-- Old contact.html links redirect here; the page now lives at contact/index.html. -->
-  <script>location.replace("contact/" + location.search + location.hash);</script>
+  <script>location.replace("contact/" + (location.protocol === "file:" ? "index.html" : "") + location.search + location.hash);</script>
   <meta http-equiv="refresh" content="0; url=contact/">
 </head>
 <body>
-  <p><a href="contact/">Contact has moved to a new address.</a></p>
+  <p><a href="contact/index.html">Contact has moved to a new address.</a></p>
 </body>
 </html>

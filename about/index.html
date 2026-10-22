@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#031f3d">
-  <meta name="description" content="Learn about BYU-I Formula Racing, our student engineering mission, and the RAVN.1 electric formula project.">
+  <meta name="description" content="Learn about BYU-I Formula Racing, our student engineering mission, and the VIKING.1 electric formula project.">
   <title>About | BYU-I Formula Racing</title>
   <link rel="stylesheet" href="../assets/css/tokens.css">
   <link rel="stylesheet" href="../assets/css/site.css">
@@ -12,6 +12,7 @@
   <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
   <script src="../assets/js/config.js" defer></script>
   <script src="../assets/js/site.js" defer></script>
+  <script src="../assets/js/disciplines.js" defer></script>
 </head>
 <body id="top" data-page="about">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -48,16 +49,9 @@
           <p class="eyebrow section-tag">Our purpose</p>
           <h2 id="mission-heading">LEARNING THAT LEAVES<br>THE CLASSROOM.</h2>
           <p class="lead">Unique to the BYU-I Formula Team is our commitment to both our studies and our dreams.</p>
-          <p class="muted"></p>
         </div>
-        <!-- Configure this photo in config.js → photos.workshop.
-             With no photo supplied, visitors see this clearly labeled placeholder. -->
-        <figure class="photo-figure" data-photo="workshop">
-          <div class="photo-placeholder">
-            <span class="eyebrow">Inside the build</span>
-            <h3>WHERE IDEAS<br>BECOME REAL.</h3>
-            <p>Team photography coming soon.</p>
-          </div>
+        <figure class="photo-figure">
+          <img class="team-photo" src="../assets/images/formula-car-tilt-test.webp" alt="A blue and white formula car tilted on a test platform with a helmeted driver strapped in" width="1375" height="1441" loading="lazy" decoding="async">
         </figure>
       </div>
     </section>
@@ -70,23 +64,56 @@
             <h2 id="disciplines-heading">DIFFERENT SKILLS.<br>ONE DIRECTION.</h2>
           </div>
         </div>
-        <div class="support-grid support-grid-disciplines">
-          <article class="support-card">
-            <h3>MECHANICAL</h3>
-            <p>Design, testing, and planning</p>
-          </article>
-          <article class="support-card">
-            <h3>TECHNICAL</h3>
-            <p>Physical systems, safety, and manufacturing</p>
-          </article>
-          <article class="support-card">
-            <h3>BUSINESS</h3>
-            <p>Planning, documentation, outreach, and partnerships.</p>
-          </article>
-          <article class="support-card">
-            <h3>ELECTRICAL</h3>
-            <p>Low and High voltage systems, configurations, and powersupply</p>
-          </article>
+        <div class="discipline-explorer" data-disciplines>
+          <div class="discipline-controls" role="group" aria-label="Choose an area of work" hidden>
+            <button class="discipline-button" type="button" aria-pressed="true" aria-controls="mechanical-panel">
+              <span class="discipline-number">01</span><span class="discipline-name">MECHANICAL</span>
+            </button>
+            <button class="discipline-button" type="button" aria-pressed="false" aria-controls="technical-panel">
+              <span class="discipline-number">02</span><span class="discipline-name">TECHNICAL</span>
+            </button>
+            <button class="discipline-button" type="button" aria-pressed="false" aria-controls="business-panel">
+              <span class="discipline-number">03</span><span class="discipline-name">BUSINESS</span>
+            </button>
+            <button class="discipline-button" type="button" aria-pressed="false" aria-controls="electrical-panel">
+              <span class="discipline-number">04</span><span class="discipline-name">ELECTRICAL</span>
+            </button>
+          </div>
+          <!-- General descriptions of each area of work.
+               Without JavaScript, all four areas remain visible in sequence. -->
+          <div class="discipline-panel" data-discipline-panel>
+            <div class="discipline-screen" id="mechanical-panel">
+              <p class="discipline-label">01 / MECHANICAL</p>
+              <h3>DESIGN. BUILD. TEST.</h3>
+              <img class="team-photo" src="../assets/images/mechanical-cad-team.png" alt="Four students working together on laptops around a table, with a CAD model visible on one screen" width="1303" height="771" loading="lazy" decoding="async">
+            </div>
+            <p class="discipline-copy">Mechanical work connects design ideas with the demands of a working car. From component layouts and CAD models to testing and refinement, the focus is on how parts fit, move, and perform together.</p>
+          </div>
+          <div class="discipline-panel" data-discipline-panel>
+            <div class="discipline-screen" id="technical-panel">
+              <p class="discipline-label">02 / TECHNICAL</p>
+              <h3>MAKE IDEAS REAL.</h3>
+              <img class="team-photo" src="../assets/images/chassis-fabrication.png" alt="Students working on a formula-car chassis in the workshop as sparks fly from the frame" width="1051" height="744" loading="lazy" decoding="async">
+            </div>
+            <p class="discipline-copy">Technical work turns drawings and plans into physical systems. Fabrication, assembly, and careful inspection bring the build together, with attention to safe workshop practices, clear procedures, and the details that make parts work as intended.</p>
+          </div>
+          <div class="discipline-panel" data-discipline-panel>
+            <div class="discipline-screen" id="business-panel">
+              <p class="discipline-label">03 / BUSINESS</p>
+              <h3>PLAN. CONNECT. GROW.</h3>
+              <img class="team-photo" src="../assets/images/business-laptop-blurred.png" alt="Two students reviewing a laptop together in the workshop" width="1531" height="1027" loading="lazy" decoding="async">
+            </div>
+            <p class="discipline-copy">Business work keeps the project organised and connected. Planning, documentation, outreach, and in-kind partnerships help coordinate the people and resources behind the build while sharing the team’s work with the wider community.</p>
+          </div>
+          <div class="discipline-panel" data-discipline-panel>
+            <div class="discipline-screen" id="electrical-panel">
+              <p class="discipline-label">04 / ELECTRICAL</p>
+              <h3>POWER THE PROJECT.</h3>
+              <img class="team-photo" src="../assets/images/electrical-workbench.png" alt="Three students examining wiring and electrical components on a worktable" width="1039" height="723" loading="lazy" decoding="async">
+            </div>
+            <p class="discipline-copy">Electrical work connects power, wiring, sensing, and control. Understanding how low- and high-voltage systems interact helps guide thoughtful integration, troubleshooting, and testing, with careful attention to safety and communication across the team.</p>
+          </div>
+          <p class="sr-only" data-discipline-status role="status"></p>
         </div>
       </div>
     </section>
@@ -95,13 +122,13 @@
         <figure class="photo-figure" data-photo="fabrication">
           <div class="photo-placeholder">
             <span class="eyebrow">Design &amp; fabrication</span>
-            <p>Photo coming soon.</p>
+            <p>Bringing ideas from drawings to physical parts.</p>
           </div>
         </figure>
         <figure class="photo-figure" data-photo="controls">
           <div class="photo-placeholder">
             <span class="eyebrow">Electronics &amp; controls</span>
-            <p>Photo coming soon.</p>
+            <p>Connecting electrical systems with software and controls.</p>
           </div>
         </figure>
       </div>
@@ -111,12 +138,12 @@
       <div class="container car-grid">
         <div class="model-panel">
           <span class="eyebrow">BYU-I / Electric formula</span>
-          <span class="model-name">RAVN.1</span>
+          <span class="model-name">VIKING.1</span>
         </div>
         <div>
           <p class="eyebrow section-tag">Our project</p>
           <h2 id="project-heading">DESIGN. BUILD.<br>TEST. LEARN.</h2>
-          <p class="muted">RAVN.1 is our electric formula project, connecting mechanical systems, electrical design, and controls.</p>
+          <p class="muted">VIKING.1 is our electric formula project, connecting mechanical systems, electrical design, and controls.</p>
         </div>
       </div>
     </section>
@@ -128,8 +155,8 @@
           <h2 id="competition-heading">THE CHALLENGE AHEAD.</h2>
         </div>
         <div>
-          <p class="lead">Competition details coming soon.</p>
-          <p class="muted">Event information, schedules, and competition updates will be posted here.</p>
+          <p class="lead">The challenge extends beyond the car.</p>
+          <p class="muted">Preparing for competition brings design, documentation, testing, and teamwork together. It is a chance to explain engineering choices, learn from feedback, and develop the practical skills behind a well-prepared project.</p>
         </div>
       </div>
     </section>

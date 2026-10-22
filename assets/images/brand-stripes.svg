@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 514" fill="none">
+  <!-- Continuous stripes centered behind the car in the crest's blue/blue/silver order. -->
+  <path d="M330 0h240L230 514H-10Z" fill="#0084ff" fill-opacity=".45"/>
+  <path d="M650 0h240L550 514H310Z" fill="#0084ff" fill-opacity=".45"/>
+  <path d="M970 0h240L870 514H630Z" fill="#c6ced8" fill-opacity=".6"/>
+</svg>

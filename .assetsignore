@@ -1,0 +1,25 @@
+# Wrangler serves assets from the repository root. Upload public files only.
+# Reopen directories for traversal; files stay excluded unless allowed below.
+*
+!*/
+!/index.html
+!/about.html
+!/sponsors.html
+!/contact.html
+!/about/index.html
+!/sponsors/index.html
+!/contact/index.html
+!/assets/css/*.css
+!/assets/js/*.js
+!/assets/fonts/*.ttf
+!/assets/fonts/OFL-*.txt
+!/assets/images/*.webp
+!/assets/images/*.png
+!/assets/images/*.jpeg
+!/assets/images/*.jpg
+!/assets/images/*.svg
+!/assets/downloads/*.pdf
+!/docs/email-signature.html
+# Keep source-only images in Git without publishing them as runtime assets.
+/assets/images/carrender.png
+/assets/images/team-with-chassis.webp

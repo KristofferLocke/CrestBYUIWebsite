@@ -74,7 +74,7 @@ Outlook versions can rewrite pasted HTML or embed a copy of the image. Check a r
 - [ ] The public PNG URL loads over HTTPS without authentication, returns `200` and `Content-Type: image/png`, and contains the intended 800-pixel-wide custom image.
 - [ ] The PNG retains transparency and its built-in shaped backing; the table adds no background rectangle. The complete artwork displays at approximately 270 pixels wide.
 - [ ] Only a thin blue divider and smaller Instagram and LinkedIn links appear beneath the logo; there is no separate team-name, personal name, position, or university line. The image alt text identifies **BYU–Idaho Formula Racing**.
-- [ ] Instagram opens `https://www.instagram.com/byui.formula.racing/` and LinkedIn opens `https://www.linkedin.com/company/byu-i-formula-racing/home/`.
+- [ ] Instagram opens `https://www.instagram.com/byui.formula.racing/` and LinkedIn opens `https://www.linkedin.com/company/byu-i-formula-racing/`.
 - [ ] A received HTML email looks correct in the team's Outlook client and Gmail, on a phone, and with remote images blocked; check light and dark mode, including the white lettering inside the logo.
 - [ ] If a remote image reference is required, the received HTML still references the public PNG URL.
 - [ ] The website's four pages, design, navigation, contact behavior, and Cloudflare DNS remain unchanged.

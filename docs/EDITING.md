@@ -19,7 +19,7 @@ Keep `id`, `class`, `data-*`, and `aria-*` attributes unless you are intentional
 
 For literal symbols in HTML, use `&amp;` for `&` and `&lt;` for `<`. Use ordinary quotation marks inside text, but do not break the quotes around an attribute.
 
-The RAVN.1 panels use Barlow Condensed as ordinary project text. They do not recreate the custom Nordic_Modern model wordmark. Add the approved model artwork later if desired; that font was not supplied.
+The VIKING.1 panels use Barlow Condensed as ordinary project text. The original brand guide uses the earlier RAVN.1 project name and references a custom Nordic_Modern wordmark; that font was not supplied. Keep the preserved source guide intact when updating current website copy.
 
 ## 2. Set the public email
 
@@ -61,11 +61,11 @@ photos: {
 },
 ```
 
-Use alt text that describes the actual photograph, not the example if it does not match. Each matching placeholder is replaced only after the image loads. Leave `src` empty to keep the placeholder.
+Use alt text that describes the actual photograph, not the example if it does not match. Each matching text card is replaced only after the image loads. Leave `src` empty to keep the existing content.
 
 Use a photo around 1200–1800 pixels wide and ideally under 400 KB. WebP or JPEG is appropriate for photos. The current slot crops to a 4:3 shape with `object-fit: cover`; put faces and important details near the center. Adjust `.team-photo` in `site.css` if you need a different crop.
 
-The photo keys in `config.js` are `car` (Home), `team` (Home and Contact), `workshop` (Home and About), `fabrication` and `controls` (Home slideshow and About), `operations` (Home slideshow), and `partnership` (Sponsors). Fill in `src`, descriptive `alt`, and an optional factual `caption` for each. Shared keys use the same photo wherever they appear. The `car` key is already set to the bundled concept render; update its matching fallback image and caption in `index.html` if you replace it.
+The photo keys in `config.js` are `car` (Home), `team` (Home and Contact), `workshop` (Home), `fabrication` and `controls` (Home slideshow and About), `operations` (Home slideshow), and `partnership` (Sponsors). Fill in `src`, descriptive `alt`, and an optional factual `caption` for each. Shared keys use the same configured photo wherever they appear. Empty settings preserve the existing HTML image or descriptive text card. The `car` and `partnership` keys already have photos; update their matching fallback images and captions in HTML if replacing them. The About mission and work-area photos are edited directly in `about/index.html`.
 
 Wide photo slots crop to 21:9 on desktop and 4:3 on phones; other slots stay at 4:3. Keep the main subject near the center.
 
@@ -84,7 +84,7 @@ Use `loading="lazy"` for images below the opening screen. Do not lazy-load a fut
 
 ## 4. Add sponsors
 
-Add approved partner logo files to `assets/images/`. Replace the empty `sponsors: []` array in `config.js`:
+Add approved partner logo files to `assets/images/`. Append entries to the existing `sponsors` array in `config.js`; keep current approved partners unless their recognition is being removed. Each entry follows this format:
 
 ```js
 sponsors: [
@@ -100,8 +100,6 @@ sponsors: [
 These names are format examples. Use real approved partners. Each item needs a name and local logo path. A URL is optional; use an HTTPS address if included. Put a comma between objects when adding a second sponsor. This is JavaScript, not JSON: preserve the surrounding object's commas when replacing the array.
 
 The sponsor page displays only configured sponsors, with no empty placeholder cards. Add entries to `config.js` to show more sponsors; rows expand automatically. Set `group` to `"major"` or `"supporting"`; omitted groups default to supporting. Major sponsors use two columns and supporting sponsors use four columns on desktop. On phones, major sponsors stack in one column and supporting sponsors use two columns. These are recognition groups for in-kind contributions, with no monetary tiers. Logos appear on a white inset within dark cards; preserve their proportions and clear space. Major logo panels are 10rem high with .5rem padding; supporting panels are 5rem high with .75rem padding. Cards with a homepage URL are clickable across their full area.
-
-The original placeholder layout reserved four major spaces (two rows) and sixteen supporting spaces (four rows). Its `.sponsor-slot` styles and placeholder replacement support in `site.js` remain available if needed later. To restore an optional empty card inside either grid, use `<div class="sponsor-slot" data-sponsor-placeholder aria-hidden="true"><span>Logo space</span></div>`. Configured sponsors replace these cards first before adding new rows.
 
 Do not promise specific logo placements, exposure, endorsement, or recruiting results unless the team has agreed to them.
 
@@ -157,7 +155,7 @@ Edit the existing project sections in Home and About. If confirmed specification
 | A setting seems ignored | Save `config.js`, reload, and look for a missing quote or comma |
 | Links fail after publishing | Keep paths relative; use `assets/...`, not `/assets/...` or a Windows disk path |
 | Styles look unchanged | Save both files, then hard-refresh; inspect the rule in `site.css` that overrides the token |
-| The email app does not open | Configure a default email app, or save/copy the prepared message |
+| The email app does not open | Configure a default email app, copy the displayed address, or use the contact form |
 | Changes only appear on one page | Page copy is independent; shared UI belongs in `site.js` |
 
 Run `python scripts/check_site.py` after editing. It catches missing local files and broken fragment links. It does not replace a browser check or review of your content.
@@ -172,6 +170,10 @@ Edit the three subteam descriptions in `index.html` under `HOME 03 / SUBTEAMS`. 
 
 The About dropdown links to `about/#team-information` and `about/#competition-information`. Edit team copy in the mission section and add verified event details under `ABOUT 04 / COMPETITION`. The desktop and mobile dropdowns use native `details` elements; keep their keyboard and Escape behavior in `site.js`.
 
+## Work-area and contribution selectors
+
+`assets/js/disciplines.js` controls the selectors in About and Sponsors. Edit the existing `.discipline-copy` content in the matching page; About uses general descriptions of each area of work. Keep each button's `aria-controls` matched to its panel ID and preserve `data-discipline-panel`. All panels remain readable without JavaScript, and the controls appear only when enhanced.
+
 ## Page prefetching
 
 When served over HTTP or HTTPS, `site.js` adds low-priority document prefetch hints after 80ms of hovering over an internal page link, or when a link receives keyboard focus. Repeated destinations are deduplicated, fragment identifiers are removed, and contact-topic query strings are retained. Downloads, external sites, current-page links, touch hover, data-saving connections, and 2G connections are excluded. Brief hovers are canceled. Browsers control whether hints are fetched and cached; normal links still work without this feature. Opening local files does not trigger prefetch requests.
@@ -182,7 +184,7 @@ The concept render has a lossless WebP copy in `assets/images/`. Its original PN
 
 ## Current logo library
 
-The header uses `combined-crest.webp` (1293 ? 1217). The footer, including the fallback HTML in all four pages, uses `crest-horizontal.webp` (1983 ? 793). `small-crest.webp` (1293 ? 1216) is the supplied compact variant, stored for future placements.
+The header uses `combined-crest.webp` (1293 × 1217). The footer, including the fallback HTML in all four pages, uses `crest-horizontal.webp` (1983 × 793). `small-crest.webp` (1293 × 1216) supplies the favicon and touch icon.
 
 The existing `.brand-lockup` and `.footer-logo` rules in `site.css` retain the header and footer sizing, spacing, responsive behavior, and proportional image fitting. Intrinsic HTML image dimensions match the new artwork. Superseded logo files and their references have been removed; the original brand guide, palette, tokens, and font licenses remain intact.
 

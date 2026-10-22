@@ -10,6 +10,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = ("index.html", "about/index.html", "sponsors/index.html", "contact/index.html")
+PUBLIC_DOCUMENTS = ("docs/email-signature.html",)
 # Old root .html URLs stay as redirect stubs so bookmarks keep working.
 REDIRECTS = ("about.html", "sponsors.html", "contact.html")
 errors = []
@@ -24,6 +25,7 @@ class Page(HTMLParser):
         self.main_count, self.title_count = 0, 0
         self.in_title, self.title = False, ""
         self.has_doctype, self.has_charset, self.has_viewport = False, False, False
+        self.forms = {}
         self.feed(path.read_text(encoding="utf-8"))
 
     def handle_decl(self, decl):
@@ -57,7 +59,9 @@ class Page(HTMLParser):
                 self.has_viewport = "width=device-width" in (attrs.get("content") or "")
         if tag == "img" and "alt" not in attrs:
             errors.append(f"{self.path.name}: image missing alt attribute")
-        for key in ("src", "href"):
+        if tag == "form":
+            self.forms[attrs.get("id")] = attrs
+        for key in ("src", "href", "action", "poster"):
             if key in attrs:
                 self.references.append(attrs[key])
         for key in ("aria-labelledby", "aria-describedby", "aria-controls"):
@@ -78,6 +82,12 @@ def check_reference(base, reference, pages):
     if not reference:
         return
     url = urlsplit(reference)
+    if url.scheme and url.scheme.lower() not in {"https", "mailto", "tel"}:
+        errors.append(f"{base.name}: unsupported or insecure URL scheme: {reference!r}")
+        return
+    if url.netloc and not url.scheme:
+        errors.append(f"{base.name}: protocol-relative URL: {reference!r}")
+        return
     if url.scheme or url.netloc:
         return
     if url.path.startswith("/"):
@@ -140,13 +150,19 @@ def main():
             errors.append(f"{name}: missing HTML doctype, UTF-8 charset, or device-width viewport")
         if not page.has_description or not page.has_lang:
             errors.append(f"{name}: missing description or document language")
-    for name in REDIRECTS:
+    for name in REDIRECTS + PUBLIC_DOCUMENTS:
         path = ROOT / name
         if not path.exists():
-            errors.append(f"Missing redirect: {name}")
+            errors.append(f"Missing public document: {name}")
             continue
-        for ref in Page(path).references:
-            check_reference(path, ref, pages)
+        pages[path] = Page(path)
+    contact = pages.get(ROOT / "contact/index.html")
+    form = contact.forms.get("contact-form", {}) if contact else {}
+    endpoint = urlsplit(form.get("action", ""))
+    if (form.get("method", "").lower() != "post" or endpoint.scheme != "https" or
+            endpoint.netloc != "formspree.io" or not re.fullmatch(r"/f/[a-zA-Z0-9]+", endpoint.path) or
+            endpoint.query or endpoint.fragment):
+        errors.append("contact/index.html: expected a native POST to a public HTTPS Formspree /f/ endpoint")
     for path, page in pages.items():
         for ref in page.references:
             check_reference(path, ref, pages)
@@ -156,6 +172,10 @@ def main():
     for css in (ROOT / "assets/css").glob("*.css"):
         for ref in re.findall(r'url\([\'"]?([^\)\'"\s]+)', css.read_text(encoding="utf-8")):
             check_reference(css, ref, pages)
+    # Maintenance links should stay useful as files and guides are renamed.
+    for document in [ROOT / "README.md", *sorted((ROOT / "docs").glob("*.md"))]:
+        for ref in re.findall(r"(?<!!)\[[^\]\n]+\]\(([^\s)]+)\)", document.read_text(encoding="utf-8")):
+            check_reference(document, ref, pages)
     # Classic scripts resolve DOM asset URLs relative to the root HTML documents.
     # Inspect static strings in config and shared templates without executing JS.
     for script in (ROOT / "assets/js").glob("*.js"):
@@ -165,10 +185,19 @@ def main():
         source = re.sub(r"^\s*//.*$", "", source, flags=re.M)
         for ref in re.findall(r'[\'"](assets/[^\'"\n]+)[\'"]', source):
             check_reference(ROOT / "index.html", ref, pages)
-    json_files = sorted((ROOT / ".vscode").glob("*.json")) + sorted((ROOT / "brand-source").glob("*.json"))
+    json_files = (sorted((ROOT / ".vscode").glob("*.json")) +
+                  sorted((ROOT / "brand-source").glob("*.json")) + [ROOT / "wrangler.jsonc"])
     for path in json_files:
         try:
-            json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique_properties,
+            source = path.read_text(encoding="utf-8-sig")
+            if path.suffix == ".jsonc":
+                # JSONC allows comments and trailing commas; preserve quoted strings.
+                source = re.sub(r'"(?:\\.|[^"\\])*"|//[^\n]*|/\*.*?\*/',
+                                lambda match: match[0] if match[0].startswith('"') else " ",
+                                source, flags=re.S)
+                source = re.sub(r'"(?:\\.|[^"\\])*"|,\s*(?=[}\]])',
+                                lambda match: match[0] if match[0].startswith('"') else "", source)
+            json.loads(source, object_pairs_hook=unique_properties,
                        parse_constant=reject_constant)
         except (ValueError, OSError) as error:
             errors.append(f"{path.relative_to(ROOT)}: invalid JSON: {error}")
@@ -177,8 +206,9 @@ def main():
             print(f"ERROR: {error}")
         print(f"\n{len(errors)} problem(s) found.")
         return 1
-    print(f"PASS: {len(pages)} pages; HTML structure, labels/ARIA IDs, local references and casing, "
-          "fragments, CSS/JS assets, and JSON checked.")
+    print(f"PASS: {len(PAGES)} pages, {len(REDIRECTS)} redirects, and email signature; HTML structure, "
+          "labels/ARIA IDs, local references and casing, fragments, CSS/JS assets, documentation links, "
+          "native Formspree POST, URL schemes, and JSON checked.")
     return 0
 
 

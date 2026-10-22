@@ -7,20 +7,9 @@
   if (!form) return;
   const status = document.querySelector("#form-status");
   const submit = form.querySelector('button[type="submit"]');
-  const email = (window.SITE_CONFIG?.contactEmail || "").trim();
-  const emailValue = document.querySelector("#contact-email");
-  if (/^[^\s@?&#]+@[^\s@?&#]+\.[^\s@?&#]+$/.test(email)) {
-    emailValue.setAttribute("aria-label", `Email ${email}`);
-    emailValue.title = `Email ${email}`;
-    emailValue.querySelector("[data-email-address]").textContent = email;
-    emailValue.href = `mailto:${email}`;
-    emailValue.hidden = false;
-    document.querySelector("#email-pending").hidden = true;
-  }
-
   const topics = ["General enquiry", "Sponsorship", "Joining the team", "Technical assistance"];
-  const queryTopics = { sponsorship: "Sponsorship", joining: "Joining the team", technical: "Technical assistance" };
-  const requestedTopic = queryTopics[new URLSearchParams(window.location.search).get("topic")];
+  const queryTopics = new Map([["sponsorship", "Sponsorship"], ["joining", "Joining the team"], ["technical", "Technical assistance"]]);
+  const requestedTopic = queryTopics.get(new URLSearchParams(window.location.search).get("topic"));
   if (requestedTopic) form.elements.topic.value = requestedTopic;
   const updateSubject = () => {
     const topic = topics.includes(form.elements.topic.value) ? form.elements.topic.value : topics[0];
