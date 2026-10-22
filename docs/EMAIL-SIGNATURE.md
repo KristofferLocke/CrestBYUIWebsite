@@ -1,23 +1,22 @@
 # Team email signature
 
-The standalone [HTML signature](email-signature.html) uses the approved horizontal team artwork, a table layout, and inline CSS. It displays the logo at 350 × 140 pixels above the team identity and clickable Instagram and LinkedIn links. The signature uses a PNG with Midnight Navy (`#031f3d`) baked into its background to keep the white lettering readable when email clients recolor HTML backgrounds. The original transparent PNG remains available separately. Text uses Midnight Navy and Action Blue (`#005eb8`) from `assets/css/tokens.css`, with Arial as an email-safe font.
+The standalone [HTML signature](email-signature.html) uses the supplied custom `Email Signature crest.png` artwork, a table layout, and inline CSS. It displays the logo at 270 × 108 pixels, about 23% narrower than the previous 350-pixel version. The artwork's own shaped navy backing protects its lettering, while the surrounding pixels and HTML table remain transparent. A 1-pixel Racing Blue (`#0084ff`) divider separates the logo from Instagram and LinkedIn links in smaller, muted 11-pixel text (`#526579`), using Arial as an email-safe font. There is no separate team-name line below the logo; the image's alt text retains the team identity.
 
 ## Files and public URLs
 
 | Purpose | Repository file | Public HTTPS URL after deployment |
 | --- | --- | --- |
 | Original horizontal logo | `assets/images/crest-horizontal.webp` | Existing website artwork; keep unchanged |
-| Transparent PNG, 800 × 320, approximately 76 KiB | `assets/images/email-signature.png` | https://byui-racing.com/assets/images/email-signature.png |
-| Recommended email PNG, 800 × 320, opaque navy background | `assets/images/email-signature-navy.png` | https://byui-racing.com/assets/images/email-signature-navy.png |
+| Custom transparent PNG, 800 × 320, approximately 76 KiB | `assets/images/email-signature.png` | https://byui-racing.com/assets/images/email-signature.png |
 | Signature to copy into Outlook | `docs/email-signature.html` | https://byui-racing.com/docs/email-signature.html |
 
-The transparent PNG was proportionally resized from the supplied 1983 × 793 WebP and saved as an optimized RGBA PNG, retaining its transparency and artwork. The navy version composites that PNG onto `#031f3d` without changing the dimensions or artwork. Email clients can use either PNG directly without WebP support.
+The PNG was proportionally resized from the supplied 1983 × 793 custom PNG and saved as an optimized RGBA PNG. Its transparency, full canvas, artwork, and built-in shaped backing are preserved; no extra rectangular background was added. The website's `crest-horizontal.webp` remains unchanged.
 
-Some email clients recolor HTML backgrounds in dark mode while leaving logo pixels unchanged. With the transparent logo, a lightened table background can make the white “Formula Racing” lettering hard to read. Baking the navy into the recommended image removes that dependence on the table background. Client behavior still varies; verify a received message in the affected Gmail and Outlook versions. See [Microsoft's guidance on email dark mode](https://learn.microsoft.com/en-us/dynamics365/customer-insights/journeys/email-dark-mode).
+Some email clients recolor HTML backgrounds in dark mode while leaving logo pixels unchanged. The custom artwork's own navy backing keeps the white “Formula Racing” lettering off the surrounding email background. Client behavior still varies; verify a received message in the affected Gmail and Outlook versions. See [Microsoft's guidance on email dark mode](https://learn.microsoft.com/en-us/dynamics365/customer-insights/journeys/email-dark-mode).
 
-If you installed the earlier transparent version, reopen the public HTML signature, copy it again, and replace the saved signature in Outlook. The new image filename helps avoid an old cached transparent image; already sent messages retain their previous signature.
+If you installed an earlier version, reopen the public HTML signature, copy it again, and replace the saved signature in Outlook. The HTML image URL includes `?v=custom-1` to request the replacement artwork without reusing an earlier cached image. The previous generated artwork was replaced, and the separate opaque navy export was removed. Previously sent messages do not acquire the new signature layout.
 
-The domain comes from the repository's existing `CNAME`: `byui-racing.com`. Each image URL consists of that HTTPS origin followed by its `/assets/images/` path; it does not include the repository name. Keep this domain and these file paths in service to preserve the URLs. These are stable public asset URLs without tokens or expiry, rather than a guarantee that the domain or hosting will exist forever.
+The domain comes from the repository's existing `CNAME`: `byui-racing.com`. The image URL consists of that HTTPS origin followed by `/assets/images/email-signature.png`; it does not include the repository name. Keep this domain and file path in service to preserve the URL. It is a stable public asset URL without tokens or expiry, rather than a guarantee that the domain or hosting will exist forever.
 
 ## Publishing with the existing website
 
@@ -31,7 +30,6 @@ Commit and push only the signature changes through the team's normal publishing 
 
 ```text
 assets/images/email-signature.png
-assets/images/email-signature-navy.png
 docs/email-signature.html
 docs/EMAIL-SIGNATURE.md
 README.md
@@ -41,7 +39,7 @@ The existing HTTPS website works with the configured domain. No Cloudflare DNS, 
 
 ## Install in Outlook
 
-First deploy the files and open https://byui-racing.com/assets/images/email-signature-navy.png in a private browser window. It should show the image directly without signing in. Then open https://byui-racing.com/docs/email-signature.html in a browser and wait for the logo to appear. Select the rendered signature with **Ctrl+A**, then **Ctrl+C**. Copy the displayed content, not the HTML source or the URL.
+First deploy the files and open https://byui-racing.com/assets/images/email-signature.png?v=custom-1 in a private browser window. It should show the image directly without signing in. Then open https://byui-racing.com/docs/email-signature.html in a browser and wait for the logo to appear. Select the rendered signature with **Ctrl+A**, then **Ctrl+C**. Copy the displayed content, not the HTML source or the URL.
 
 For **new Outlook for Windows or Outlook on the web**:
 
@@ -57,15 +55,15 @@ For **classic Outlook for Windows**:
 3. Paste the rendered signature into **Edit signature**, preserving formatting.
 4. Set the defaults for new messages and replies/forwards, then save with **OK**.
 
-Compose a fresh message in **HTML** format to check the result. The logo should be about 350 pixels wide, without stretching; both social links should work. Outlook may require separate signature setup for other accounts, devices, or clients. These paths follow [Microsoft's Outlook signature instructions](https://support.microsoft.com/en-us/outlook/mail/how-to-add-and-change-an-email-signature-in-outlook).
+Compose a fresh message in **HTML** format to check the result. The logo should be about 270 pixels wide, without stretching, with a thin blue divider and only the two social links below it. Outlook may require separate signature setup for other accounts, devices, or clients. These paths follow [Microsoft's Outlook signature instructions](https://support.microsoft.com/en-us/outlook/mail/how-to-add-and-change-an-email-signature-in-outlook).
 
-Outlook versions can rewrite pasted HTML or embed a copy of the image. Check a received test message, not just the editor. If retaining the remote image reference is required, inspect the received message's HTML and confirm its `img` source still points to the hosted PNG rather than a local path or `cid:` attachment. A hosted source in the template does not force Outlook to retain it. Recipient clients can block remote pictures until the reader allows them; the signature's text identity and social links remain usable. Image blocking does not by itself mean hosting failed.
+Outlook versions can rewrite pasted HTML or embed a copy of the image. Check a received test message, not just the editor. If retaining the remote image reference is required, inspect the received message's HTML and confirm its `img` source still points to the hosted PNG rather than a local path or `cid:` attachment. A hosted source in the template does not force Outlook to retain it. Recipient clients can block remote pictures until the reader allows them; the descriptive image alt text identifies the team where supported, and the social links remain usable. Image blocking does not by itself mean hosting failed.
 
 ## Update the logo later
 
 1. Obtain the approved horizontal artwork. Keep original brand files intact; make an email export separately. If replacement artwork is missing, place the approved source under `assets/images/` with a descriptive lowercase, hyphenated filename before exporting.
-2. In an image editor, export an optimized **PNG with transparency**, 800 pixels wide, with proportional scaling enabled, as `assets/images/email-signature.png`. Export a second copy composited onto a solid Midnight Navy (`#031f3d`) background as `assets/images/email-signature-navy.png`. Keep the source artwork and transparent export intact. Do not stretch, crop, or recolor the logo. The current outputs are 800 × 320; aim for under 100 KiB each where practical without harming the artwork.
-3. Replace both PNGs, keeping their exact filenames and paths. The HTML signature uses the navy version. If the new aspect ratio differs, update the HTML image's `height` attribute and inline height to `round(350 × exported height / exported width)`. Keep both width values at 350.
+2. In an image editor, export an optimized **PNG with transparency**, 800 pixels wide, with proportional scaling enabled, as `assets/images/email-signature.png`. Preserve the approved artwork's own backing and transparent surroundings; do not add an extra rectangle or flatten the image. Do not stretch, crop, or recolor the logo. The current output is 800 × 320; aim for under 100 KiB where practical without harming the artwork.
+3. Keep that exact filename and path. If the new aspect ratio differs, update the HTML image's `height` attribute and inline height to `round(270 × exported height / exported width)`. Keep the table width and both image width values at 270. Increment the image URL's version query (for example, `?v=custom-2`) when replacing the artwork, then recopy the updated signature into Outlook.
 4. Run `python scripts/check_site.py` (or `py scripts/check_site.py` on Windows), review the signature, and publish the replacement through the existing Pages process.
 5. Check the public PNG after deployment. A cached copy may persist in browsers, Cloudflare, or email image proxies. Hard-refresh first; if Cloudflare is caching the image and it remains stale, purge only this exact asset URL through the existing dashboard. A DNS change is unnecessary.
 6. Recopy and save the signature in Outlook if its HTML changed or Outlook embedded the previous image. Previously sent messages and recipient caches may retain the older logo.
@@ -73,9 +71,9 @@ Outlook versions can rewrite pasted HTML or embed a copy of the image. Check a r
 ## Brief verification checklist
 
 - [ ] The Pages deployment for the published commit completed successfully.
-- [ ] Both public PNG URLs load over HTTPS without authentication, return `200` and `Content-Type: image/png`, and contain the intended 800-pixel-wide images.
-- [ ] The original PNG retains transparency; the signature uses the opaque navy PNG and shows the complete horizontal artwork at approximately 350 pixels wide.
-- [ ] The signature says **BYU–Idaho Formula Racing**, with no personal name, position, or separate university line.
+- [ ] The public PNG URL loads over HTTPS without authentication, returns `200` and `Content-Type: image/png`, and contains the intended 800-pixel-wide custom image.
+- [ ] The PNG retains transparency and its built-in shaped backing; the table adds no background rectangle. The complete artwork displays at approximately 270 pixels wide.
+- [ ] Only a thin blue divider and smaller Instagram and LinkedIn links appear beneath the logo; there is no separate team-name, personal name, position, or university line. The image alt text identifies **BYU–Idaho Formula Racing**.
 - [ ] Instagram opens `https://www.instagram.com/byui.formula.racing/` and LinkedIn opens `https://www.linkedin.com/company/byu-i-formula-racing/home/`.
 - [ ] A received HTML email looks correct in the team's Outlook client and Gmail, on a phone, and with remote images blocked; check light and dark mode, including the white lettering inside the logo.
 - [ ] If a remote image reference is required, the received HTML still references the public PNG URL.
