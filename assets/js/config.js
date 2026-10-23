@@ -21,23 +21,23 @@ window.SITE_CONFIG = Object.freeze({
   // Empty src keeps the existing HTML image or descriptive text card.
   photos: {
     workshop: { src: "", alt: "", caption: "" },
-    car: { src: "assets/images/carrender.webp", alt: "Front view of a blue and white formula car concept render", caption: "Concept render." },
+    car: { src: "assets/images/home/formula-car-concept.webp", alt: "Front view of a blue and white formula car concept render", caption: "" },
     team: { src: "", alt: "", caption: "" },
     fabrication: { src: "", alt: "", caption: "" },
     controls: { src: "", alt: "", caption: "" },
     operations: { src: "", alt: "", caption: "" },
-    partnership: { src: "assets/images/team-around-formula-car.webp", alt: "A group gathered around a blue and white formula car with an exposed chassis in the workshop", caption: "" }
+    partnership: { src: "assets/images/sponsors/team-around-formula-car.webp", alt: "A group gathered around a blue and white formula car with an exposed chassis in the workshop", caption: "" }
   },
 
   // Only add sponsors who have approved public recognition. Examples in EDITING.md.
   // Each item: { name: "...", logo: "assets/images/...", url: "https://...", group: "major" }
   // group: "major" or "supporting" (default). Recognition is for in-kind support.
   sponsors: [
-    { name: "Grand Teton Energy Systems", logo: "assets/images/grand-teton-energy-systems-logo.png", url: "https://www.grandteton.energy/", group: "major" },
-    { name: "Ecotron", logo: "assets/images/ecotron-logo.png", url: "https://ecotron.ai/news/ecotron-launching-sponsorship-program-to-student-teams/", group: "major" },
-    { name: "High Performance Academy", logo: "assets/images/high-performance-academy-logo.png", url: "https://www.hpacademy.com/", group: "major" },
-    { name: "Carrozzeria Silvestro", logo: "assets/images/carrozzeria-silvestro-logo.webp", url: "https://carrozzeriasilvestro.com/", group: "major" },
-    { name: "Onshape", logo: "assets/images/onshape-logo.png", url: "https://www.onshape.com/en/", group: "supporting" },
-    { name: "RapidHarness", logo: "assets/images/rapidharness-logo.png", url: "https://rapidharness.com/", group: "supporting" }
+    { name: "Grand Teton Energy Systems", logo: "assets/images/sponsors/logos/grand-teton-energy-systems-logo.png", url: "https://www.grandteton.energy/", group: "major" },
+    { name: "Ecotron", logo: "assets/images/sponsors/logos/ecotron-logo.png", url: "https://ecotron.ai/news/ecotron-launching-sponsorship-program-to-student-teams/", group: "major" },
+    { name: "High Performance Academy", logo: "assets/images/sponsors/logos/high-performance-academy-logo.png", url: "https://www.hpacademy.com/", group: "major" },
+    { name: "Carrozzeria Silvestro", logo: "assets/images/sponsors/logos/carrozzeria-silvestro-logo.webp", url: "https://carrozzeriasilvestro.com/", group: "major" },
+    { name: "Onshape", logo: "assets/images/sponsors/logos/onshape-logo.png", url: "https://www.onshape.com/en/", group: "supporting" },
+    { name: "RapidHarness", logo: "assets/images/sponsors/logos/rapidharness-logo.png", url: "https://rapidharness.com/", group: "supporting" }
   ]
 });

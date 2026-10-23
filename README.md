@@ -67,7 +67,7 @@ This checks HTML structure and references, local image/font/script paths (includ
 
 The homepage is `index.html` at the root; the other pages live in `about/`, `sponsors/`, and `contact/` so they load at clean URLs such as `/sponsors/`. The root `about.html`, `sponsors.html`, and `contact.html` files are only redirects that keep old links working. `assets/` contains runtime CSS, JavaScript, images, and licensed fonts; `docs/` contains maintenance guides; `scripts/` contains the dependency-free checker. `.editorconfig` and `.vscode/` provide editor defaults. `brand-source/` holds the original design references, not runtime configuration.
 
-The current supplied logos live in `assets/images/`; superseded logo files have been removed. The concept render retains its original PNG source alongside its WebP copy. Local review output in `qa/`, Python bytecode, and `.cache/` directories are ignored by Git and should stay out of published files.
+Images are grouped under `assets/images/` by page (`home/`, `about/`, `contact/`, `sponsors/`), with sponsor logos in `sponsors/logos/` and shared branding in `shared/`. Original images retained for editing live in `sources/` and are excluded from Wrangler uploads. The hosted `email-signature.png` stays at its existing public URL. Local review output in `qa/`, Python bytecode, and `.cache/` directories are ignored by Git and should stay out of published files.
 
 The site has no service worker, Cache Storage, or local-storage cache to reset. Prefetch hints use the browser's normal HTTP cache. If a browser shows an older edit, hard-refresh or disable its cache in developer tools while testing. With Python's preview server, restart the server only if you need to change its port or serving folder.
 

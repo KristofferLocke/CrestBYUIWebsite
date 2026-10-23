@@ -48,13 +48,13 @@ Links can preselect a topic:
 
 ## 3. Add your own team photo
 
-1. Put a photo in `assets/images/`, for example `workshop-team.webp`.
+1. Put a photo in the matching page folder under `assets/images/`: `home/`, `about/`, `contact/`, or `sponsors/`. Use lowercase descriptive filenames separated by hyphens, for example `workshop-team.webp`. Shared branding lives in `shared/`; originals retained for editing live in `sources/`. Keep `assets/images/email-signature.png` at its existing public URL.
 2. In `config.js`, find `photos.workshop` and fill it in:
 
 ```js
 photos: {
   workshop: {
-    src: "assets/images/workshop-team.webp",
+    src: "assets/images/home/workshop-team.webp",
     alt: "BYU-I students assembling the rear suspension in the workshop",
     caption: "Preparing suspension components for assembly."
   }
@@ -84,14 +84,14 @@ Use `loading="lazy"` for images below the opening screen. Do not lazy-load a fut
 
 ## 4. Add sponsors
 
-Add approved partner logo files to `assets/images/`. Append entries to the existing `sponsors` array in `config.js`; keep current approved partners unless their recognition is being removed. Each entry follows this format:
+Add approved partner logo files to `assets/images/sponsors/logos/`. Append entries to the existing `sponsors` array in `config.js`; keep current approved partners unless their recognition is being removed. Each entry follows this format:
 
 ```js
 sponsors: [
   {
     name: "Actual sponsor name",
     group: "major",
-    logo: "assets/images/actual-sponsor.svg",
+    logo: "assets/images/sponsors/logos/actual-sponsor.svg",
     url: "https://www.actual-sponsor-domain.com"
   }
 ]
@@ -162,9 +162,9 @@ Run `python scripts/check_site.py` after editing. It catches missing local files
 
 ## Homepage subteam slideshow
 
-Edit the three subteam descriptions in `index.html` under `HOME 03 / SUBTEAMS`. Photos use the `fabrication`, `controls`, and `operations` keys in `config.js`. The first two are also used on About. Leave their image paths empty to keep the placeholders.
+Edit the four subteam descriptions (Mechanical, Technical, Business, and Electrical) and their fallback photos in `index.html` under `HOME 03 / SUBTEAMS`. Their optimized WebP photos live in `assets/images/home/`: `mechanical-chassis-cad.webp`, `technical-workshop-grinding.webp`, `business-team-planning.webp`, and `electrical-team-electronics.webp`. The four original screenshots are retained under descriptive `*-original.png` names in `assets/images/sources/`; the uncorrected Mechanical WebP is also retained there. Mechanical uses the cooler edit, and Electrical uses the brightened edit. The `fabrication`, `controls`, and `operations` keys in `config.js` can override the Mechanical, Electrical, and Business photos; `fabrication` and `controls` also appear on About. Empty settings preserve the HTML photos.
 
-`assets/js/subteams.js` controls the manual slideshow. Visitors can use previous/next, the three slide selectors, or arrow keys while focusing a control. Slides do not advance automatically. Without JavaScript, all subteams appear in sequence.
+`assets/js/subteams.js` controls the manual slideshow. Visitors can use previous/next, the four slide selectors, or arrow keys while focusing a control. Slides do not advance automatically. Without JavaScript, all subteams appear in sequence.
 
 ## About navigation
 
@@ -174,13 +174,15 @@ The About dropdown links to `about/#team-information` and `about/#competition-in
 
 `assets/js/disciplines.js` controls the selectors in About and Sponsors. Edit the existing `.discipline-copy` content in the matching page; About uses general descriptions of each area of work. Keep each button's `aria-controls` matched to its panel ID and preserve `data-discipline-panel`. All panels remain readable without JavaScript, and the controls appear only when enhanced.
 
+About's `data-discipline-dropdown` moves each description beneath its button when JavaScript is available. One area opens at a time; the photo panels reserve a shared size so changing areas does not resize the card. On narrow screens the descriptions stay inside a fixed-height list below the photo; long descriptions can scroll within their available space. Sponsors keeps its existing selector layout.
+
 ## Page prefetching
 
 When served over HTTP or HTTPS, `site.js` adds low-priority document prefetch hints after 80ms of hovering over an internal page link, or when a link receives keyboard focus. Repeated destinations are deduplicated, fragment identifiers are removed, and contact-topic query strings are retained. Downloads, external sites, current-page links, touch hover, data-saving connections, and 2G connections are excluded. Brief hovers are canceled. Browsers control whether hints are fetched and cached; normal links still work without this feature. Opening local files does not trigger prefetch requests.
 
 ## Optimized images
 
-The concept render has a lossless WebP copy in `assets/images/`. Its original PNG remains intact as source artwork. The supplied logos are already WebP and are copied without resizing, cropping, or recompression.
+The concept render has a lossless WebP copy at `assets/images/home/formula-car-concept.webp`. Its original PNG remains intact at `assets/images/sources/formula-car-concept-original.png`. The original team photo is retained at `assets/images/sources/team-with-chassis-original.webp`. The supplied logos are already WebP and are copied without resizing, cropping, or recompression.
 
 ## Current logo library
 

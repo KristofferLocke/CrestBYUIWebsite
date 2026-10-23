@@ -38,7 +38,7 @@
           <span>Menu</span>
         </button>
         <a class="brand-lockup" href="${siteRoot}" aria-label="BYU-I Formula Racing home">
-          <img src="${siteRoot}assets/images/combined-crest.webp" alt="" width="1293" height="1217" decoding="async">
+          <img src="${siteRoot}assets/images/shared/combined-crest.webp" alt="" width="1293" height="1217" decoding="async">
         </a>
       </div>
       <dialog class="site-menu" id="site-menu" aria-labelledby="menu-title">
@@ -157,7 +157,7 @@
     footer.innerHTML = `
       <div class="container">
         <div class="footer-main">
-          <a class="footer-logo" href="${siteRoot}"><img src="${siteRoot}assets/images/crest-horizontal.webp" alt="BYU-I Formula Racing home" width="1983" height="793" loading="lazy" decoding="async"></a>
+          <a class="footer-logo" href="${siteRoot}"><img src="${siteRoot}assets/images/shared/crest-horizontal.webp" alt="BYU-I Formula Racing home" width="1983" height="793" loading="lazy" decoding="async"></a>
           <nav class="footer-nav" aria-label="Footer navigation">${pages.map(page =>
             `<a href="${page.href}"${page.id === currentPage ? ' aria-current="page"' : ""}>${page.label}</a>`).join("")}</nav>
         </div>

@@ -13,13 +13,13 @@
 !/assets/js/*.js
 !/assets/fonts/*.ttf
 !/assets/fonts/OFL-*.txt
-!/assets/images/*.webp
-!/assets/images/*.png
-!/assets/images/*.jpeg
-!/assets/images/*.jpg
-!/assets/images/*.svg
+!/assets/images/**/*.webp
+!/assets/images/**/*.png
+!/assets/images/**/*.jpeg
+!/assets/images/**/*.jpg
+!/assets/images/**/*.svg
+!/assets/images/email-signature.png
 !/assets/downloads/*.pdf
 !/docs/email-signature.html
 # Keep source-only images in Git without publishing them as runtime assets.
-/assets/images/carrender.png
-/assets/images/team-with-chassis.webp
+/assets/images/sources/**

@@ -123,12 +123,12 @@ details[open] > summary .dropdown-chevron { transform: rotate(180deg); }
 .menu-links a:hover, .menu-links a[aria-current="page"] { color: var(--brand-blue); }
 
 /* 03 / Dark opening panels */
-.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--silver-edge); background: var(--brand-navy); color: white; padding-top: 11rem; }
+.hero { position: relative; overflow: hidden; background: var(--brand-navy); color: white; padding-top: 11rem; }
 .hero h1, .hero h2, .hero h3 { color: white; }
-/* Silver speed marks sit along the panel edge, clear of headings and copy. */
-.hero::after { content: ""; position: absolute; bottom: 0; right: 0; width: min(42%, 32rem); height: .65rem; background: repeating-linear-gradient(120deg, var(--racing-silver) 0 2rem, transparent 2rem 3rem); pointer-events: none; }
+/* Straight page dividers use the same stripe widths as the homepage diagonal. */
+.hero::after { content: ""; position: absolute; bottom: 0; right: 0; width: 100%; height: 1rem; background: linear-gradient(to bottom, var(--brand-blue) 0 .5rem, var(--brand-navy) .5rem .75rem, var(--racing-silver) .75rem); pointer-events: none; }
 .home-hero { padding-bottom: max(11rem, calc(9vw + 7rem)); border-bottom: 0; }
-.home-hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(90deg, #031f3de6 0%, #031f3db3 35%, #031f3d66 60%, #031f3d1a 100%), url("../images/home-team.jpeg"); background-size: cover; background-position: center 35%; pointer-events: none; }
+.home-hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(90deg, #031f3de6 0%, #031f3db3 35%, #031f3d66 60%, #031f3d1a 100%), url("../images/home/team-hero.jpeg"); background-size: cover; background-position: center 35%; pointer-events: none; }
 /* Draw the diagonal directly with one-pixel transitions to soften its edges. */
 .home-hero::after {
   width: 100%; height: calc(9vw + 1.5rem); bottom: 0;
@@ -148,6 +148,12 @@ details[open] > summary .dropdown-chevron { transform: rotate(180deg); }
 .hero-copy .lead { max-width: 39ch; margin-bottom: 2rem; }
 .accent { color: var(--brand-blue); }
 .page-hero { padding-bottom: 6rem; }
+/* Layer fine grain and mottling into navy, with quiet drafting lines underneath. */
+.hero.page-hero {
+  background-image: url("../images/about/header-texture.svg"), radial-gradient(ellipse at 45% 45%, #00437624, #00132635), repeating-linear-gradient(125deg, transparent 0 119px, #b9c9db06 120px, transparent 121px 240px);
+  background-size: 384px 384px, cover, auto;
+  background-blend-mode: soft-light, normal, normal;
+}
 .page-hero .hero-grid { padding-bottom: 0; align-items: end; }
 .page-hero .hero-copy h1 { margin-bottom: 0; }
 .hero-aside { padding-left: 2rem; border-left: 1px solid #617a94; }
@@ -166,13 +172,23 @@ details[open] > summary .dropdown-chevron { transform: rotate(180deg); }
 .home-quote blockquote p { max-width: 55ch; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.75rem, 3.2vw, 2.5rem); line-height: 1.2; text-wrap: pretty; }
 .home-quote figcaption { display: grid; gap: .25rem; color: var(--text-muted); font-size: .875rem; }
 .home-quote-author { color: var(--text); font-weight: 600; }
-.car-section { padding-block: clamp(5rem, 8vw, 8rem); background: var(--surface); border-block: 1px solid var(--border); }
+.car-section { padding-block: clamp(5rem, 8vw, 8rem); background: var(--surface); border-block: 2px solid var(--racing-silver); }
 .car-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: center; }
-.model-panel { padding: 3rem; background: var(--brand-navy); color: white; border-radius: var(--radius-card); position: relative; overflow: hidden; }
-.model-panel::after { content: ""; position: absolute; right: 1.5rem; bottom: -2rem; width: 8rem; height: 12rem; transform: skewX(-25deg); background: repeating-linear-gradient(90deg, #c6ced824 0 1.5rem, transparent 1.5rem 2.5rem); pointer-events: none; }
+.model-panel { padding: 3rem; background: url("../images/shared/brand-stripes.svg") center / cover no-repeat, var(--brand-navy); color: white; border-radius: var(--radius-card); position: relative; overflow: hidden; }
 .model-panel .eyebrow { color: var(--text-on-dark); margin-bottom: 2rem; }
 .model-name { display: block; font-family: var(--font-display); font-weight: 600; font-size: clamp(4rem, 8vw, 6.5rem); line-height: 1; letter-spacing: .015em; position: relative; z-index: 1; }
+/* Keep the homepage project card level with its expanded text column. */
+@media (min-width: 768px) {
+  #the-team .car-grid { align-items: stretch; }
+  #the-team .model-panel { display: flex; flex-direction: column; justify-content: center; }
+}
 /* Shared About and Sponsors selector: selected text at left, choices at right. */
+[aria-labelledby="disciplines-heading"] .section-heading { position: relative; }
+[aria-labelledby="disciplines-heading"] .discipline-explorer { position: relative; }
+.work-line-graphic { position: absolute; top: -2rem; right: 0; width: 52%; max-width: 36rem; height: auto; opacity: .22; pointer-events: none; }
+@media (max-width: 767px) {
+  .work-line-graphic { display: none; }
+}
 .discipline-panel + .discipline-panel { margin-top: 2rem; }
 .discipline-screen { min-width: 0; min-height: 23rem; margin: 0; padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; gap: 1.5rem; border-radius: .75rem; background: #27394b; }
 .discipline-label { margin: 0; color: var(--link); font-size: 1rem; }
@@ -203,11 +219,33 @@ details[open] > summary .dropdown-chevron { transform: rotate(180deg); }
   .discipline-button { padding: .75rem; }
   .discipline-name { font-size: 1.5rem; }
 }
-.cta-section { border-block: 1px solid var(--silver-edge); padding-block: 6rem; background: var(--brand-navy); color: white; }
+/* About descriptions open beneath their buttons within a stable card. */
+[data-discipline-dropdown].is-interactive .discipline-screen { visibility: hidden; }
+[data-discipline-dropdown].is-interactive .discipline-panel.is-selected .discipline-screen { visibility: visible; }
+[data-discipline-dropdown].is-interactive .discipline-controls { display: flex; flex-direction: column; contain: inline-size; min-height: 34rem; }
+.discipline-choice { display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; border-bottom: 1px solid var(--silver-edge); }
+.discipline-choice.is-selected { flex-grow: 3; }
+.discipline-choice .discipline-button { flex: 0 0 auto; width: 100%; border-bottom: 0; }
+.discipline-choice:not(.is-selected) { justify-content: center; }
+.discipline-choice .discipline-copy { min-height: 0; max-width: none; margin: 0; padding: .5rem 1rem 1rem; overflow-y: auto; }
+@media (prefers-reduced-motion: no-preference) {
+  .discipline-choice.is-selected .discipline-copy { animation: discipline-reveal .2s ease-out; }
+  @keyframes discipline-reveal {
+    from { opacity: 0; transform: translateY(-.5rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+@media (max-width: 767px) {
+  [data-discipline-dropdown].is-interactive .discipline-controls { height: 36rem; min-height: 0; }
+  .discipline-choice .discipline-copy { padding-inline: .75rem; }
+}
+.cta-section { border-block: 2px solid var(--racing-silver); padding-block: 6rem; background: var(--brand-navy); color: white; }
 .cta-inner { display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
 .cta-section h2 { color: white; margin-bottom: .75rem; }
 .cta-section p { color: var(--text-on-dark); max-width: 48ch; }
 .split-section { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: start; }
+.competition-logo { display: block; max-width: 32rem; margin-block: 1.5rem 2rem; padding: 1rem; background: white; border-radius: var(--radius-control); }
+.competition-logo img { display: block; width: 100%; height: auto; }
 .note { border-left: 3px solid var(--action); padding: 1rem 1.5rem; background: var(--surface); margin-top: 2rem; font-size: .875rem; }
 .steps { list-style: none; margin: 0; padding: 0; }
 .steps li { padding: 0 0 2rem; }
@@ -249,7 +287,7 @@ a.sponsor-entry:hover { border-color: var(--link); }
 .photo-section .photo-placeholder p { margin-top: .75rem; }
 .photo-wide .photo-placeholder, .photo-wide .team-photo { aspect-ratio: 21 / 9; }
 /* Oversized crest stripes sit behind the transparent concept render. */
-.car-render .team-photo { object-fit: contain; background: url("../images/brand-stripes.svg") center / cover no-repeat, var(--brand-navy); border: 1px solid var(--border); }
+.car-render .team-photo { object-fit: contain; background: url("../images/shared/brand-stripes.svg") center / cover no-repeat, var(--brand-navy); border: 1px solid var(--border); }
 .hero, .cta-section { background-image: repeating-linear-gradient(125deg, transparent 0 79px, #ffffff03 80px 81px); }
 @media (max-width: 767px) {
   .photo-grid { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -281,15 +319,21 @@ a.sponsor-entry:hover { border-color: var(--link); }
 }
 
 /* 05 / Contact. The static form submits to Formspree; email remains an alternative. */
-.contact-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 5rem; }
+.contact-section { --contact-body-gap: 4rem; padding-top: var(--contact-body-gap); }
+.contact-section + .photo-section { margin-top: -2rem; }
+.contact-layout { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 5rem; align-items: start; }
+.contact-hero .hero-grid { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 5rem; }
+.contact-info { grid-area: 1 / 1; }
+/* Lift the sheet into the opening panel while keeping its full height in flow. */
+.contact-sheet { grid-area: 1 / 2; position: relative; z-index: 1; margin-top: calc(-12rem - var(--contact-body-gap)); }
 .contact-details { border-top: 1px solid var(--border); margin-top: 2rem; }
 .contact-detail { border-bottom: 1px solid var(--border); padding-block: 1.25rem; }
 .contact-detail .eyebrow { color: var(--text-muted); font-size: .875rem; margin-bottom: .5rem; }
 .contact-detail .eyebrow::before { display: none; }
 .contact-detail p { font-size: .9375rem; }
 .contact-detail a { overflow-wrap: anywhere; }
-.contact-form { padding: 2.5rem; border: 1px solid var(--silver-edge); border-top: 3px solid var(--racing-silver); border-radius: var(--radius-card); background: var(--surface); }
-.contact-form h2 { margin-bottom: 1rem; }
+.contact-form { --surface: #202429; padding: 2.5rem; border: 1px solid #0084ff66; border-top: 3px solid var(--brand-blue); border-radius: var(--radius-card); background: #292d32; }
+.contact-form h2 { margin-bottom: 1rem; color: var(--brand-blue); }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 .field { display: flex; flex-direction: column; gap: .5rem; min-width: 0; }
 .field-wide { grid-column: 1 / -1; }
@@ -330,7 +374,7 @@ a.social-link:hover { color: white; background: var(--surface); }
   .hero { padding-top: 10rem; }
   .hero-grid { gap: 2rem; }
   .split-section { gap: 3rem; }
-  .contact-layout { gap: 2rem; }
+  .contact-layout, .contact-hero .hero-grid { gap: 2rem; }
   .contact-form { padding: 2rem; }
   .car-grid { gap: 3rem; }
 }
@@ -345,7 +389,7 @@ a.social-link:hover { color: white; background: var(--surface); }
   .menu-top { padding-bottom: .5rem; }
   .section { padding-block: 4rem; }
   .hero { padding-top: 9rem; }
-  .home-hero::before { background-image: linear-gradient(90deg, #031f3db3, #031f3d73), url("../images/home-team.jpeg"); background-position: 60% center; }
+  .home-hero::before { background-image: linear-gradient(90deg, #031f3db3, #031f3d73), url("../images/home/team-hero.jpeg"); background-position: 60% center; }
   .hero-grid { grid-template-columns: 1fr; gap: 3rem; padding-bottom: 2rem; }
   .hero-copy .lead { max-width: 42ch; }
   .hero-copy h1 { font-size: clamp(3rem, 10vw, 4.5rem); }
@@ -356,6 +400,10 @@ a.social-link:hover { color: white; background: var(--surface); }
   .hero-quote { padding: 1.5rem; }
   .hero-aside .lead { font-size: 1rem; }
   .car-grid, .split-section, .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .contact-hero .hero-grid { grid-template-columns: 1fr; }
+  .contact-section { --contact-body-gap: 2rem; padding-top: var(--contact-body-gap); }
+  .contact-info, .contact-sheet { grid-area: auto; }
+  .contact-sheet { margin-top: 0; }
   .section-heading { display: block; margin-bottom: 2rem; }
   .section-heading > p { margin-top: 1.25rem; }
   .sponsor-grid-major { grid-template-columns: 1fr; }

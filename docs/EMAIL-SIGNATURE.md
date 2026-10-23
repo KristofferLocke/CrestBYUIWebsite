@@ -6,7 +6,7 @@ The standalone [HTML signature](email-signature.html) uses the supplied custom `
 
 | Purpose | Repository file | Public HTTPS URL after deployment |
 | --- | --- | --- |
-| Original horizontal logo | `assets/images/crest-horizontal.webp` | Existing website artwork; keep unchanged |
+| Original horizontal logo | `assets/images/shared/crest-horizontal.webp` | Existing website artwork; keep unchanged |
 | Custom transparent PNG, 800 × 320, approximately 76 KiB | `assets/images/email-signature.png` | https://byui-racing.com/assets/images/email-signature.png |
 | Signature to copy into Outlook | `docs/email-signature.html` | https://byui-racing.com/docs/email-signature.html |
 
