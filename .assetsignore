@@ -20,6 +20,7 @@
 !/assets/images/**/*.svg
 !/assets/images/email-signature.png
 !/assets/downloads/*.pdf
+!/assets/2026-2027 BYUI-Formula-Racing-Sponsorship-Booklet.pdf
 !/docs/email-signature.html
 # Keep source-only images in Git without publishing them as runtime assets.
 /assets/images/sources/**
