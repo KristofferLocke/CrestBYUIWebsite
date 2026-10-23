@@ -15,7 +15,7 @@ window.SITE_CONFIG = Object.freeze({
 
   // Add a PDF relative to the site root, e.g. "assets/downloads/sponsor-packet.pdf".
   // The optional download button stays hidden until a path is supplied.
-  sponsorPacket: "",
+  sponsorPacket: "assets/2026-2027%20BYUI-Formula-Racing-Sponsorship-Booklet.pdf",
 
   // Add real team photos relative to the site root. Update alt text too.
   // Empty src keeps the existing HTML image or descriptive text card.
