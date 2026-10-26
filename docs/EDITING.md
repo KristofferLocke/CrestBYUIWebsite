@@ -182,11 +182,17 @@ When served over HTTP or HTTPS, `site.js` adds low-priority document prefetch hi
 
 ## Optimized images
 
-The concept render has a lossless WebP copy at `assets/images/home/formula-car-concept.webp`. Its original PNG remains intact at `assets/images/sources/formula-car-concept-original.png`. The original team photo is retained at `assets/images/sources/team-with-chassis-original.webp`. The supplied logos are already WebP and are copied without resizing, cropping, or recompression.
+Published team photos use WebP copies in each page's `assets/images/<page>/optimized/` folder. Originals are retained for editing, including the PNG/JPEG files and originals in `sources/`. The copies are 480, 800, 1200, and up to 1600 pixels wide, without enlarging smaller originals. HTML uses `srcset` and `sizes` so phones can download smaller copies; `auto` sizes uses the actual lazy-loaded image width where supported, with explicit layout sizes as a fallback. The homepage hero background uses the full-resolution `assets/images/home/byui-formula-team-hero.webp` (3720 x 2795, WebP quality 95) at all screen sizes. Its original `byui-formula-team-hero.png` is retained unchanged alongside it. This replaces the deleted `team-hero.jpeg`; older generated hero WebP copies are retained but unused. The taller photo fills the hero behind the fixed navigation, with a 42% vertical focal position and overlaid text on mobile. The hero is excluded from the photo optimization script; regenerate its WebP from the PNG at full resolution with Pillow using `image.save(target, "WEBP", quality=95, method=6)`. Logos and brand-source assets are unchanged.
+
+To regenerate the copies after editing an original, run `py scripts/optimize_photos.py` (or `python scripts/optimize_photos.py`). This optional editing script requires Pillow; the website itself still needs no build step or dependencies. If replacing an original with different dimensions, update the HTML `srcset` width descriptors, fallback `src`, and intrinsic `width`/`height` to match the generated files. Each photo's fallback `src` points to its largest optimized copy.
+
+Configured photo overrides can optionally include `sources: [{ src: "assets/images/home/optimized/workshop-team-480.webp", width: 480 }, ...]` and a `sizes` string. All paths stay relative to the site root. When config points to the existing HTML photo, the HTML image and its responsive attributes are preserved; edit that image's alt text and caption directly in HTML as well as in config.
+
+The concept render has a lossless WebP copy at `assets/images/home/formula-car-concept.webp`. Its original PNG remains intact at `assets/images/sources/formula-car-concept-original.png`. The original team photo is retained at `assets/images/sources/team-with-chassis-original.webp`. The menu and footer logos use lossless WebP copies of the supplied rounded PNG artwork, without resizing or cropping; both PNG originals are retained in `assets/images/shared/`.
 
 ## Current logo library
 
-The header uses `combined-crest.webp` (1293 × 1217). The footer, including the fallback HTML in all four pages, uses `crest-horizontal.webp` (1983 × 793). `small-crest.webp` (1293 × 1216) supplies the favicon and touch icon.
+The rounded menu crest uses `combined-crest.png` as its retained original and `combined-crest.webp` on the site (1293 × 1217). The rounded footer logo, including the fallback HTML in all four pages, uses `crest-horizontal.webp`, with `crest-horizontal.png` retained as its original (1983 × 793). `small-crest.webp` (1293 × 1216) supplies the favicon and touch icon.
 
 The existing `.brand-lockup` and `.footer-logo` rules in `site.css` retain the header and footer sizing, spacing, responsive behavior, and proportional image fitting. Intrinsic HTML image dimensions match the new artwork. Superseded logo files and their references have been removed; the original brand guide, palette, tokens, and font licenses remain intact.
 

@@ -5,7 +5,7 @@
 - `brand-source/brand-guide-v1.0.pdf`: the supplied working brand guide, preserved as-is.
 - `brand-source/palette.json`: the supplied machine-readable color/font palette, preserved as-is.
 - `assets/css/tokens.css`: the supplied token stylesheet, preserved as-is.
-- `assets/images/shared/combined-crest.webp`, `crest-horizontal.webp`, and `small-crest.webp`: refined supplied logos, copied unchanged. Superseded standalone logo assets have been removed.
+- `assets/images/shared/combined-crest.webp`, `crest-horizontal.webp`, and `small-crest.webp`: supplied logos; the rounded menu and footer artwork uses lossless WebP copies with original PNGs alongside them, while the small crest is unchanged. Superseded standalone logo assets have been removed.
 
 The identity follows the current supplied guide's **BYU-I Formula Racing** naming and **RAVN.1** project label. The guide is explicitly a proposed team system; it does not establish university approval.
 

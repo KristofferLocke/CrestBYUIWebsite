@@ -6,11 +6,11 @@ The standalone [HTML signature](email-signature.html) uses the supplied custom `
 
 | Purpose | Repository file | Public HTTPS URL after deployment |
 | --- | --- | --- |
-| Original horizontal logo | `assets/images/shared/crest-horizontal.webp` | Existing website artwork; keep unchanged |
+| Original horizontal logo | `assets/images/shared/crest-horizontal.webp` | Current website artwork; separate from the signature asset |
 | Custom transparent PNG, 800 × 320, approximately 76 KiB | `assets/images/email-signature.png` | https://byui-racing.com/assets/images/email-signature.png |
 | Signature to copy into Outlook | `docs/email-signature.html` | https://byui-racing.com/docs/email-signature.html |
 
-The PNG was proportionally resized from the supplied 1983 × 793 custom PNG and saved as an optimized RGBA PNG. Its transparency, full canvas, artwork, and built-in shaped backing are preserved; no extra rectangular background was added. The website's `crest-horizontal.webp` remains unchanged.
+The PNG was proportionally resized from the supplied 1983 × 793 custom PNG and saved as an optimized RGBA PNG. Its transparency, full canvas, artwork, and built-in shaped backing are preserved; no extra rectangular background was added. Website logo updates are separate from the hosted `email-signature.png` asset.
 
 Some email clients recolor HTML backgrounds in dark mode while leaving logo pixels unchanged. The custom artwork's own navy backing keeps the white “Formula Racing” lettering off the surrounding email background. Client behavior still varies; verify a received message in the affected Gmail and Outlook versions. See [Microsoft's guidance on email dark mode](https://learn.microsoft.com/en-us/dynamics365/customer-insights/journeys/email-dark-mode).
 

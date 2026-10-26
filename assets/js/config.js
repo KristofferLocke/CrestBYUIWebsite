@@ -21,12 +21,12 @@ window.SITE_CONFIG = Object.freeze({
   // Empty src keeps the existing HTML image or descriptive text card.
   photos: {
     workshop: { src: "", alt: "", caption: "" },
-    car: { src: "assets/images/home/formula-car-concept.webp", alt: "Front view of a blue and white formula car concept render", caption: "" },
+    car: { src: "assets/images/home/optimized/formula-car-concept-1600.webp", sources: [{ src: "assets/images/home/optimized/formula-car-concept-480.webp", width: 480 }, { src: "assets/images/home/optimized/formula-car-concept-800.webp", width: 800 }, { src: "assets/images/home/optimized/formula-car-concept-1200.webp", width: 1200 }, { src: "assets/images/home/optimized/formula-car-concept-1600.webp", width: 1600 }], alt: "Front view of a blue and white formula car concept render", caption: "" },
     team: { src: "", alt: "", caption: "" },
     fabrication: { src: "", alt: "", caption: "" },
     controls: { src: "", alt: "", caption: "" },
     operations: { src: "", alt: "", caption: "" },
-    partnership: { src: "assets/images/sponsors/team-around-formula-car.webp", alt: "A group gathered around a blue and white formula car with an exposed chassis in the workshop", caption: "" }
+    partnership: { src: "assets/images/sponsors/optimized/team-around-formula-car-1600.webp", sources: [{ src: "assets/images/sponsors/optimized/team-around-formula-car-480.webp", width: 480 }, { src: "assets/images/sponsors/optimized/team-around-formula-car-800.webp", width: 800 }, { src: "assets/images/sponsors/optimized/team-around-formula-car-1200.webp", width: 1200 }, { src: "assets/images/sponsors/optimized/team-around-formula-car-1600.webp", width: 1600 }], alt: "A group gathered around a blue and white formula car with an exposed chassis in the workshop", caption: "" }
   },
 
   // Only add sponsors who have approved public recognition. Examples in EDITING.md.

@@ -209,9 +209,24 @@
   document.querySelectorAll("[data-photo]").forEach(figure => {
     const photo = config.photos?.[figure.dataset.photo];
     if (!photo?.alt || !safeURL(photo.src, true)) return;
+    const existing = figure.querySelector("img");
+    // Keep the responsive HTML image when config points to the same photo.
+    if (existing && new URL(existing.getAttribute("src"), document.baseURI).href === new URL(siteRoot + photo.src, document.baseURI).href) {
+      existing.alt = photo.alt;
+      if (photo.caption) {
+        const caption = figure.querySelector("figcaption") || document.createElement("figcaption");
+        caption.textContent = photo.caption;
+        figure.append(caption);
+      }
+      return;
+    }
     const img = document.createElement("img");
     img.className = "team-photo";
-    img.src = siteRoot + photo.src;
+    const sources = Array.isArray(photo.sources) ? photo.sources.filter(source => safeURL(source.src, true) && Number.isInteger(source.width) && source.width > 0) : [];
+    if (sources?.length) {
+      img.sizes = photo.sizes || existing?.sizes || "auto, (max-width: 767px) calc(100vw - 2.5rem), 1200px";
+      img.srcset = sources.map(source => `${siteRoot}${source.src} ${source.width}w`).join(", ");
+    }
     img.alt = photo.alt;
     img.width = 1200;
     img.height = 900;
@@ -225,6 +240,7 @@
         figure.append(caption);
       }
     }, { once: true });
+    img.src = siteRoot + photo.src;
     // Until a valid image has loaded, keep the honest placeholder visible.
   });
 

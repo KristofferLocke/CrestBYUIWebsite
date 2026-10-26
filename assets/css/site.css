@@ -127,12 +127,12 @@ details[open] > summary .dropdown-chevron { transform: rotate(180deg); }
 .hero h1, .hero h2, .hero h3 { color: white; }
 /* Straight page dividers use the same stripe widths as the homepage diagonal. */
 .hero::after { content: ""; position: absolute; bottom: 0; right: 0; width: 100%; height: 1rem; background: linear-gradient(to bottom, var(--brand-blue) 0 .5rem, var(--brand-navy) .5rem .75rem, var(--racing-silver) .75rem); pointer-events: none; }
-.home-hero { padding-bottom: max(11rem, calc(9vw + 7rem)); border-bottom: 0; }
-.home-hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(90deg, #031f3de6 0%, #031f3db3 35%, #031f3d66 60%, #031f3d1a 100%), url("../images/home/team-hero.jpeg"); background-size: cover; background-position: center 35%; pointer-events: none; }
+.home-hero { padding-bottom: max(11rem, calc(9vw + 7rem)); border-bottom: 0; min-height: calc(var(--header-offset) + 28vw + 9rem); }
+.home-hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(90deg, #031f3de6 0%, #031f3db3 35%, #031f3d66 60%, #031f3d1a 100%), url("../images/home/byui-formula-team-hero.webp"); background-size: 100% 100%, cover; background-position: center, center 42%; background-repeat: no-repeat; pointer-events: none; }
 /* Draw the diagonal directly with one-pixel transitions to soften its edges. */
 .home-hero::after {
   width: 100%; height: calc(9vw + 1.5rem); bottom: 0;
-  background: linear-gradient(175deg,
+  background: linear-gradient(var(--home-divider-angle, 175deg),
     transparent calc(50% - .5rem - 1px), var(--brand-blue) calc(50% - .5rem),
     var(--brand-blue) calc(50% - 1px), var(--brand-navy) 50%,
     var(--brand-navy) calc(50% + .25rem - 1px), var(--racing-silver) calc(50% + .25rem),
@@ -279,6 +279,9 @@ a.sponsor-entry:hover { border-color: var(--link); }
 
 /* Photo slots keep their proportions when configured images replace placeholders. */
 .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.project-grid { align-items: center; }
+.project-grid > * { min-width: 0; }
+.project-grid .model-panel { display: flex; flex-direction: column; justify-content: center; }
 .photo-stack { display: grid; }
 .photo-section + .section { padding-top: 0; }
 .photo-section .photo-placeholder { display: flex; align-items: center; justify-content: center; text-align: center; border: 1px solid #476580; background: linear-gradient(135deg, #ffffff05, transparent 65%), var(--brand-navy); }
@@ -366,9 +369,22 @@ a.social-link:hover { color: white; background: var(--surface); }
 .footer-bottom p { margin-bottom: 0; }
 
 /* 07 / Tablet and phone layouts */
-/* Stop ultrawide screens enlarging the photo until faces leave the hero. */
+/* Let the homepage fill wide screens while keeping the group in the crop. */
 @media (min-width: 100rem) {
-  .home-hero::before { max-width: 100rem; margin-inline: auto; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .home-hero {
+    --home-divider-angle: 177deg;
+    min-height: max(clamp(44rem, 33.333vw, 80rem), calc(var(--header-offset) + 28vw + 9rem));
+    padding-top: clamp(11rem, 8.5vw, 21rem);
+    padding-bottom: clamp(6rem, 4.5vw, 12rem);
+  }
+  .home-hero > .container { width: 90%; }
+  .home-hero .hero-copy { max-width: 78rem; }
+  .home-hero .hero-copy h1 { font-size: clamp(5rem, 3.6vw, 8rem); line-height: 1.02; }
+  .home-hero::before {
+    background-image: linear-gradient(90deg, #031f3df2 0%, #031f3dcc 24%, #031f3d66 48%, #031f3d1a 75%, #031f3d33 100%), url("../images/home/byui-formula-team-hero.webp");
+    background-position: center, center 42%;
+  }
+  .home-hero::after { height: clamp(6rem, 6vw, 15rem); }
 }
 @media (max-width: 1023px) {
   .hero { padding-top: 10rem; }
@@ -389,7 +405,7 @@ a.social-link:hover { color: white; background: var(--surface); }
   .menu-top { padding-bottom: .5rem; }
   .section { padding-block: 4rem; }
   .hero { padding-top: 9rem; }
-  .home-hero::before { background-image: linear-gradient(90deg, #031f3db3, #031f3d73), url("../images/home/team-hero.jpeg"); background-position: 60% center; }
+  .home-hero::before { background-image: linear-gradient(90deg, #031f3db3, #031f3d73), url("../images/home/byui-formula-team-hero.webp"); background-position: center, 60% 42%; }
   .hero-grid { grid-template-columns: 1fr; gap: 3rem; padding-bottom: 2rem; }
   .hero-copy .lead { max-width: 42ch; }
   .hero-copy h1 { font-size: clamp(3rem, 10vw, 4.5rem); }
